@@ -1,0 +1,1 @@
+export { SearchAnimesBar } from "./SearchAnimesBar";

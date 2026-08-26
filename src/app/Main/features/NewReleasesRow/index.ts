@@ -1,0 +1,1 @@
+export { NewReleasesRow } from "./NewReleasesRow";

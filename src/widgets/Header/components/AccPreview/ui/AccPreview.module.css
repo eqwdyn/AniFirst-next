@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 36px;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+
+.login {
+  font-size: 14;
+  font-weight: 600;
+}

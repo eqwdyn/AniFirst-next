@@ -1,0 +1,16 @@
+:root {
+  --container-max-width: 1440px;
+  --container-padding-inline: 80px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-textPrimary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-montserrat-alternates);
+}

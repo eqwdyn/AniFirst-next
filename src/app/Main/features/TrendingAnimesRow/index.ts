@@ -1,0 +1,1 @@
+export { TrendingAnimesRow } from "./TrendingAnimesRow";
