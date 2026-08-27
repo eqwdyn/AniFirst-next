@@ -1,6 +1,6 @@
 export default {
   background: "#09090d",
-  backgroundOpacity80: "rgba(9, 9, 13, 0.8)",
+  backgroundOpacity: "rgba(9, 9, 13, 0.8)",
 
   primary: "#8B5CF6",
   primaryOpacity: "rgba(138, 92, 246, 0.)",

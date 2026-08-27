@@ -5,4 +5,6 @@ export interface IAnime {
   year: number;
   tags: string[];
   imgSrc: string;
+  totalEpisodes: number;
+  lastEpisode: number;
 }

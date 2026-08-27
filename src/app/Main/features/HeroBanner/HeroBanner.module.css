@@ -1,10 +1,10 @@
 .hero {
   position: relative;
-  height: 600px;
+  height: 700px;
   overflow: hidden;
   background-image: radial-gradient(
-    ellipse farthest-side at 55% 30%,
-    var(--color-backgroundOpacity80) 20%,
+    ellipse farthest-side at 55% 40%,
+    var(--color-backgroundOpacity) 20%,
     var(--color-background) 80%
   );
 }
@@ -16,9 +16,8 @@
 
 .content {
   position: absolute;
-  bottom: 40px;
-  left: 60px;
-  z-index: 10;
+  bottom: 0px;
+  left: 0;
 
   max-width: 400px;
   display: flex;

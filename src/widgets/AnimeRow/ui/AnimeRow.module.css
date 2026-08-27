@@ -1,0 +1,15 @@
+.list {
+  position: relative;
+  overflow-x: scroll;
+
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 20px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}

@@ -5,6 +5,7 @@ export const MainPageContentWrapper: FC<PropsWithChildren> = ({ children }) => {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         rowGap: 64,
         paddingTop: 48,
         paddingBottom: 80,

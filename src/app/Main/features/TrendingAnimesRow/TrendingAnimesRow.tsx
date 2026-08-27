@@ -1,3 +1,13 @@
+import { MockAnimes } from "@/stores/MockAnimes.store";
+import { AnimeBlock } from "@/widgets/AnimeBlock";
+
 export const TrendingAnimesRow = () => {
-  return <></>;
+  return (
+    <AnimeBlock
+      title="Trending Now"
+      titleId="trending-animes"
+      description="Most watched in the last 24 hours"
+      items={MockAnimes}
+    />
+  );
 };
