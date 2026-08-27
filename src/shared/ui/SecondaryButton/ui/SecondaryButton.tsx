@@ -1,14 +1,18 @@
 "use client";
 
 import type { FC, PropsWithChildren } from "react";
-import cl from "./PrimaryButton.module.css";
+import cl from "./SecondaryButton.module.css";
 
 interface Props extends PropsWithChildren {
   className?: string;
   onClick?: () => void;
 }
 
-export const PrimaryButton: FC<Props> = ({ children, className, onClick }) => {
+export const SecondaryButton: FC<Props> = ({
+  className,
+  onClick,
+  children,
+}) => {
   return (
     <button
       className={className ? `${cl.button} ${className}` : cl.button}

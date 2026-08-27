@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { FC } from "react";
 import cl from "./HeroBanner.module.css";
 import { PrimaryButton } from "@/shared/ui/PrimaryButton";
+import { SecondaryButton } from "@/shared/ui/SecondaryButton";
 
 interface Props {
   item: IAnime;
@@ -34,12 +35,16 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
           {item.tags.map((tag, index) => {
             if (index === 0) {
               return (
-                <p className={`${cl.tag} ${cl.firstTag}`}>
+                <p className={`${cl.tag} ${cl.firstTag}`} key={tag}>
                   {tag.toUpperCase()}
                 </p>
               );
             }
-            return <p className={cl.tag}>{tag.toUpperCase()}</p>;
+            return (
+              <p className={cl.tag} key={tag}>
+                {tag.toUpperCase()}{" "}
+              </p>
+            );
           })}
         </div>
         <div className={cl.titleBlock}>
@@ -48,7 +53,7 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
         </div>
         <div className={cl.buttons}>
           <PrimaryButton>
-            <div className={cl.watchNowButtonContent}>
+            <div className={cl.buttonContent}>
               <Image
                 src="/svg/play.svg"
                 width={18}
@@ -59,6 +64,18 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
               <span className={cl.buttonText}>Watch Now</span>
             </div>
           </PrimaryButton>
+          <SecondaryButton>
+            <div className={cl.buttonContent}>
+              <Image
+                src="/svg/plus.svg"
+                width={18}
+                height={18}
+                loading="lazy"
+                alt=""
+              />
+              <span className={cl.buttonText}>Add to List</span>
+            </div>
+          </SecondaryButton>
         </div>
       </div>
     </section>

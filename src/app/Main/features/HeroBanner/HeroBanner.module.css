@@ -56,7 +56,12 @@
   font-size: 1.125rem;
   color: var(--color-textSecondary);
 }
-.watchNowButtonContent {
+
+.buttons {
+  display: flex;
+  column-gap: 16px;
+}
+.buttonContent {
   display: flex;
   align-items: center;
   justify-content: center;
