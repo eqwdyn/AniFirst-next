@@ -1,10 +1,11 @@
 .hero {
   position: relative;
   height: 700px;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-image: radial-gradient(
     ellipse farthest-side at 55% 40%,
-    var(--color-backgroundOpacity) 20%,
+    rgba(0, 0, 0, 0) 10%,
+    var(--color-backgroundOpacity) 60%,
     var(--color-background) 80%
   );
 }

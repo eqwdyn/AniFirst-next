@@ -4,4 +4,14 @@
   color: white;
   border: none;
   background-color: var(--color-primary);
+
+  transition: 0.2s ease-in background-color;
+}
+
+.button:hover {
+  background-color: var(--color-primaryTint);
+}
+.button:active {
+  background-color: var(--color-primaryTint);
+  opacity: 0.8;
 }

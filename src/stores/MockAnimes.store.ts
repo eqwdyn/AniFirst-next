@@ -8,8 +8,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2026,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode-v2.png",
     totalEpisodes: 12,
     lastEpisode: 5,
   },
@@ -20,8 +19,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2025,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode-v2.png",
     totalEpisodes: 12,
     lastEpisode: 6,
   },
@@ -32,8 +30,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode-v2.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },
@@ -44,8 +41,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },
@@ -56,8 +52,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },
@@ -68,8 +63,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },
@@ -80,8 +74,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },
@@ -92,8 +85,7 @@ export const MockAnimes: IAnime[] = [
       "A boy chooses the hardest difficulty in a new world — and fights to survive. Every step is high-stakes; every choice determines his survival.",
     year: 2024,
     tags: ["Featured release", "Action", "Fantasy", "Isekai"],
-    imgSrc:
-      "https://ru-images-s.kinorium.com/movie/1080/12577391.jpg?1783587197",
+    imgSrc: "/hell-mode.png",
     totalEpisodes: 24,
     lastEpisode: 15,
   },

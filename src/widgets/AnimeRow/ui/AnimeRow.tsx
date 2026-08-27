@@ -12,7 +12,7 @@ export const AnimeRow: FC<Props> = ({ items, listRef }) => {
   return (
     <ul className={cl.list} ref={listRef}>
       {items.map((item) => (
-        <li key={item.id}>
+        <li key={item.id} className={cl.item}>
           <AnimeCard item={item} />
         </li>
       ))}

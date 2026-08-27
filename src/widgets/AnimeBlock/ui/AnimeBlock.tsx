@@ -20,8 +20,8 @@ export const AnimeBlock: FC<Props> = ({
   items,
 }) => {
   const listRef = useRef<HTMLUListElement | null>(null);
-  const cardWidth = 204;
-  const gap = 20;
+  const cardWidth = 224;
+  const gap = 0;
 
   const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
   const [canScrollRight, setCanScrollRight] = useState<boolean>(false);

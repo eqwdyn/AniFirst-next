@@ -12,6 +12,7 @@ const monserratAlternates = Montserrat_Alternates({
   weight: ["400", "600", "700", "800"],
 });
 const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin", "cyrillic"],
 });
 
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ru"
-      className={`${geist.className} ${monserratAlternates.variable}`}
+      className={`${geist.className} ${monserratAlternates.variable} ${geist.variable}`}
     >
       <head>
         <style>{`:root {\n${cssVars}\n}`}</style>
