@@ -25,9 +25,9 @@ export const Header = ({}) => {
           <SearchAnimesBar />
         </div>
 
-        <div className={cl.userActions}>
-          <AccPreview />
-        </div>
+        {/* <div className={cl.userActions}> */}
+        <AccPreview />
+        {/* </div> */}
       </div>
     </header>
   );

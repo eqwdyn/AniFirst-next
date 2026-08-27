@@ -1,0 +1,64 @@
+.hero {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  background-image: radial-gradient(
+    ellipse farthest-side at 55% 30%,
+    var(--color-backgroundOpacity80) 20%,
+    var(--color-background) 80%
+  );
+}
+
+.bgImage {
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  z-index: 10;
+
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+.tagsBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 12px;
+  font-weight: "600";
+  background-color: var(--color-primaryOpacity);
+  border-radius: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-primary);
+}
+.firstTag {
+  background-color: var(--color-tetriartyOpacity);
+  border: 1px solid var(--color-tetriarty);
+}
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+}
+.description {
+  font-size: 1.125rem;
+  color: var(--color-textSecondary);
+}
+.watchNowButtonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+}

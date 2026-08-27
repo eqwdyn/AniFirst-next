@@ -6,7 +6,7 @@ import { useColor } from "@/shared/hooks/useColor";
 
 interface Props extends PropsWithChildren {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const PrimaryButton: FC<Props> = ({ children, className, onClick }) => {

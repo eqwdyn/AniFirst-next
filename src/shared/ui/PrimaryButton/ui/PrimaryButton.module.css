@@ -1,4 +1,6 @@
 .button {
   border-radius: 12;
   padding: 14px 28px;
+  color: white;
+  border: none;
 }
