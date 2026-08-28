@@ -2,15 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState, type FC } from "react";
 import cl from "./AnimeBlock.module.css";
-import { AnimeRow } from "@/widgets/AnimeRow";
-import { IAnime } from "@/entities/Anime.ent";
 import { ArrowButton } from "@/widgets/AnimeBlock/components/ArrowButton";
+import { Slider } from "@/widgets/Slider";
 
 interface Props {
   titleId: string;
   title: string;
   description: string;
-  items: IAnime[];
+  items: any[];
+  renderItems: (item: any) => React.ReactNode;
 }
 
 export const AnimeBlock: FC<Props> = ({
@@ -18,6 +18,7 @@ export const AnimeBlock: FC<Props> = ({
   title,
   description,
   items,
+  renderItems,
 }) => {
   const listRef = useRef<HTMLUListElement | null>(null);
   const cardWidth = 224;
@@ -98,7 +99,7 @@ export const AnimeBlock: FC<Props> = ({
         </div>
       </header>
 
-      <AnimeRow items={items} listRef={listRef} />
+      <Slider items={items} listRef={listRef} renderItem={renderItems} />
     </section>
   );
 };

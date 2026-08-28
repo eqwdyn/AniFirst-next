@@ -1,5 +1,8 @@
+"use client";
+
 import { MockAnimes } from "@/stores/MockAnimes.store";
 import { AnimeBlock } from "@/widgets/AnimeBlock";
+import { AnimeCard } from "@/widgets/AnimeCard";
 
 export const NewReleasesRow = () => {
   return (
@@ -8,6 +11,7 @@ export const NewReleasesRow = () => {
       titleId="new-releases-animes"
       description="Fresh episodes updated today"
       items={MockAnimes}
+      renderItems={(item) => <AnimeCard item={item} />}
     />
   );
 };

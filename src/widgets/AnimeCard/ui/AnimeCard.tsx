@@ -3,6 +3,8 @@ import cl from "./AnimeCard.module.css";
 import { IAnime } from "@/entities/Anime.ent";
 import { Show } from "@/shared/ui/Show";
 import Image from "next/image";
+import Link from "next/link";
+import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 
 interface Props {
   item: IAnime;
@@ -11,7 +13,8 @@ interface Props {
 
 export const AnimeCard: FC<Props> = ({ item, footer }) => {
   return (
-    <article className={cl.container}>
+    <NotStyledLink href={`/anime/${item.id}`} className={cl.container}>
+      {/* <article> */}
       <div className={cl.content}>
         <Image
           src={item.imgSrc}
@@ -33,6 +36,7 @@ export const AnimeCard: FC<Props> = ({ item, footer }) => {
       <Show when={!!footer}>
         <footer className={cl.footer}>{footer}</footer>
       </Show>
-    </article>
+      {/* </article> */}
+    </NotStyledLink>
   );
 };

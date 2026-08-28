@@ -1,0 +1,27 @@
+.link {
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.2s ease-in;
+}
+.link:hover {
+  color: var(--color-primary);
+}
+.link:focus-visible {
+  color: var(--color-primary);
+  border-radius: 12px;
+}
+
+.activeLink {
+  color: var(--color-primary);
+}
+.activeLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 50%;
+  height: 2px;
+  background-color: var(--color-primary);
+}

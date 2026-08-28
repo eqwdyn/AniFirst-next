@@ -1,5 +1,8 @@
+"use client";
+
 import { MockAnimes } from "@/stores/MockAnimes.store";
 import { AnimeBlock } from "@/widgets/AnimeBlock";
+import { AnimeCard } from "@/widgets/AnimeCard";
 
 export const TrendingAnimesRow = () => {
   return (
@@ -8,6 +11,7 @@ export const TrendingAnimesRow = () => {
       titleId="trending-animes"
       description="Most watched in the last 24 hours"
       items={MockAnimes}
+      renderItems={(item) => <AnimeCard item={item} />}
     />
   );
 };
