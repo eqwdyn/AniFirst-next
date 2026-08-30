@@ -10,6 +10,7 @@ export const TrendingAnimesRow = () => {
       title="Trending Now"
       titleId="trending-animes"
       description="Most watched in the last 24 hours"
+      urlToAll="/anime/trending"
       items={MockAnimes}
       renderItems={(item) => <AnimeCard item={item} />}
     />

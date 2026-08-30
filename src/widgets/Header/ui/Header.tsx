@@ -3,6 +3,10 @@ import { AccPreview } from "../components/AccPreview";
 import cl from "./Header.module.css";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 import { Navigation } from "@/widgets/Header/components/Navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { BurgerButton } from "@/widgets/Header/components/BurgerButton";
+import { SearchLink } from "@/widgets/Header/components/SearchLink";
 
 export const Header = ({}) => {
   return (
@@ -20,13 +24,19 @@ export const Header = ({}) => {
             <Navigation />
           </nav>
         </div>
+
         <div className={cl.searchWrapper}>
           <SearchAnimesBar />
         </div>
 
-        {/* <div className={cl.userActions}> */}
-        <AccPreview />
-        {/* </div> */}
+        <div className={cl.userActions}>
+          <AccPreview />
+        </div>
+
+        <div className={cl.mobileActions}>
+          <SearchLink />
+          <BurgerButton />
+        </div>
       </div>
     </header>
   );

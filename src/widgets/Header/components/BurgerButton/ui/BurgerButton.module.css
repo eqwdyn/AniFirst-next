@@ -1,0 +1,13 @@
+.button {
+  border: none;
+  background-color: var(--color-secondary);
+
+  padding: 8px;
+  margin: 0;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: opacity 0.2s ease-in;
+}
+.button:active {
+  opacity: 0.8;
+}

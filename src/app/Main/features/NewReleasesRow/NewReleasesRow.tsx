@@ -10,6 +10,7 @@ export const NewReleasesRow = () => {
       title="New Releases"
       titleId="new-releases-animes"
       description="Fresh episodes updated today"
+      urlToAll="/anime/new-releases"
       items={MockAnimes}
       renderItems={(item) => <AnimeCard item={item} />}
     />

@@ -73,7 +73,9 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
                 loading="lazy"
                 alt=""
               />
-              <span className={cl.buttonText}>Add to List</span>
+              <span className={`${cl.buttonText} ${cl.secondaryButtonText}`}>
+                Add to List
+              </span>
             </div>
           </SecondaryButton>
         </div>

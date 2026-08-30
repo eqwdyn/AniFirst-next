@@ -1,0 +1,25 @@
+.container {
+  font-size: 0.75rem;
+}
+
+.progressBar {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primaryDark);
+  overflow: hidden;
+  border-radius: 8px;
+}
+.fiel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-primary);
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5px;
+}

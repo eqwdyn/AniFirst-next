@@ -3,6 +3,30 @@
   --container-padding-inline: 80px;
 }
 
+@media (max-width: 1000px) {
+  :root {
+    --container-padding-inline: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  :root {
+    --container-padding-inline: 20px;
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --container-padding-inline: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    --container-padding-inline: 5px;
+  }
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-textPrimary);

@@ -6,15 +6,21 @@ interface Props {
   onClick?: () => void;
   direction?: "left" | "right";
   disabled?: boolean;
+  className?: string;
 }
 
 export const ArrowButton: FC<Props> = ({
   onClick,
   direction = "left",
   disabled = false,
+  className,
 }) => {
   return (
-    <button onClick={onClick} className={cl.button} disabled={disabled}>
+    <button
+      onClick={onClick}
+      className={className ? `${cl.button} ${className}` : cl.button}
+      disabled={disabled}
+    >
       <Image
         src={`/svg/chevron-${direction}.svg`}
         alt={direction}

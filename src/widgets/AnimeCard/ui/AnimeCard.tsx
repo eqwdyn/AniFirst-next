@@ -13,30 +13,29 @@ interface Props {
 
 export const AnimeCard: FC<Props> = ({ item, footer }) => {
   return (
-    <NotStyledLink href={`/anime/${item.id}`} className={cl.container}>
-      {/* <article> */}
-      <div className={cl.content}>
-        <Image
-          src={item.imgSrc}
-          alt={item.title}
-          fill
-          sizes="300px"
-          loading="eager"
-          className={cl.bgImage}
-        />
+    <NotStyledLink href={`/anime/anime-page/${item.id}`} className={cl.wrapper}>
+      <article className={cl.container}>
+        <div className={cl.content}>
+          <Image
+            src={item.imgSrc}
+            alt={item.title}
+            fill
+            sizes="400px"
+            loading="eager"
+            className={cl.bgImage}
+          />
 
-        <div className={cl.media}>
-          <h3 className={cl.title}>{item.title}</h3>
-          <p className={cl.episodes}>
-            {item.lastEpisode} / {item.totalEpisodes} Episodes
-          </p>
+          <div className={cl.media}>
+            <h3 className={cl.title}>{item.title}</h3>
+            <p className={cl.episodes}>
+              {item.lastEpisode} / {item.totalEpisodes} Episodes
+            </p>
+          </div>
         </div>
-      </div>
-
+      </article>
       <Show when={!!footer}>
         <footer className={cl.footer}>{footer}</footer>
       </Show>
-      {/* </article> */}
     </NotStyledLink>
   );
 };

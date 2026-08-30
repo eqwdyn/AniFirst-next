@@ -1,7 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
 .container {
   border-radius: 12px;
   width: 204px;
-  height: 270px;
+  aspect-ratio: 0.75;
   box-sizing: border-box;
   transition: box-shadow 0.2s ease-in;
   cursor: pointer;
@@ -54,4 +60,19 @@
 
 .title {
   font-size: 0.9375rem;
+  font-family: var(--font-geist);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 180px;
+    aspect-ratio: 0.7;
+  }
+}
+
+@media (max-width: 425px) {
+  .container {
+    width: 140px;
+    aspect-ratio: 0.65;
+  }
 }

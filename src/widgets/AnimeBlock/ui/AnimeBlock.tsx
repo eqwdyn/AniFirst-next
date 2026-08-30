@@ -4,11 +4,13 @@ import { useCallback, useEffect, useRef, useState, type FC } from "react";
 import cl from "./AnimeBlock.module.css";
 import { ArrowButton } from "@/widgets/AnimeBlock/components/ArrowButton";
 import { Slider } from "@/widgets/Slider";
+import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 
 interface Props {
   titleId: string;
   title: string;
   description: string;
+  urlToAll: string;
   items: any[];
   renderItems: (item: any) => React.ReactNode;
 }
@@ -18,6 +20,7 @@ export const AnimeBlock: FC<Props> = ({
   title,
   description,
   items,
+  urlToAll,
   renderItems,
 }) => {
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -90,12 +93,17 @@ export const AnimeBlock: FC<Props> = ({
             direction="left"
             onClick={handleScrollLeft}
             disabled={!canScrollLeft}
+            className={cl.arrowButton}
           />
           <ArrowButton
             direction="right"
             onClick={handleScrollRight}
             disabled={!canScrollRight}
+            className={cl.arrowButton}
           />
+          <NotStyledLink href={urlToAll} className={cl.seeAllLink}>
+            See All
+          </NotStyledLink>
         </div>
       </header>
 

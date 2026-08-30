@@ -29,3 +29,27 @@
   justify-content: center;
   column-gap: 8px;
 }
+.seeAllLink {
+  display: none;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 475px) {
+  .headerBlock {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+  .description {
+    display: none;
+  }
+  .seeAllLink {
+    display: block;
+  }
+  .arrowButton {
+    display: none;
+  }
+}
