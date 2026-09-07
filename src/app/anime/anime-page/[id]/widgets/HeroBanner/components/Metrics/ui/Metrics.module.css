@@ -1,0 +1,42 @@
+.metrics {
+  display: flex;
+  column-gap: 40px;
+  align-items: center;
+  background-color: var(--color-backgroundOpacity);
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+.metric {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  position: relative;
+}
+.metric::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+.metric:last-child::after {
+  display: none;
+}
+
+.metricRating {
+  font-weight: 700;
+}
+
+.metricEpisodes {
+  color: var(--color-textSecondary);
+}
+
+.metricStudio {
+  color: var(--color-textSecondary);
+}
+.metricStudioName {
+  color: var(--color-textPrimary);
+  font-weight: 700;
+}

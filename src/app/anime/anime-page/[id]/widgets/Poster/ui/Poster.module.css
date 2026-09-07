@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  aspect-ratio: 0.75;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 230px;
+  }
+}
+@media (max-width: 850px) {
+  .container {
+    width: 185px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 300px;
+    aspect-ratio: 0.85;
+  }
+}

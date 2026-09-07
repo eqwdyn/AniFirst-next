@@ -1,6 +1,7 @@
 export default {
   background: "#09090d",
   backgroundOpacity: "rgba(9, 9, 13, 0.8)",
+  backgroundSecondary: "#12121E",
 
   primary: "#8B5CF6",
   primaryTint: "#A78BFA",

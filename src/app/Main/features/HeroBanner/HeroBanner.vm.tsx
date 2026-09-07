@@ -4,6 +4,8 @@ import type { FC } from "react";
 import cl from "./HeroBanner.module.css";
 import { PrimaryButton } from "@/shared/ui/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/SecondaryButton";
+import { TagsBlock } from "@/widgets/TagsBlock";
+import Link from "next/link";
 
 interface Props {
   item: IAnime;
@@ -13,13 +15,6 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
   return (
     <section className={cl.hero}>
       <div className={cl.bgImage}>
-        {/* <Image
-          src={item.imgSrc}
-          width={1440}
-          height={800}
-          alt=""
-          loading="eager"
-        /> */}
         <Image
           src={item.imgSrc}
           alt={item.title}
@@ -31,39 +26,26 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
         />
       </div>
       <div className={cl.content}>
-        <div className={cl.tagsBlock}>
-          {item.tags.map((tag, index) => {
-            if (index === 0) {
-              return (
-                <p className={`${cl.tag} ${cl.firstTag}`} key={tag}>
-                  {tag.toUpperCase()}
-                </p>
-              );
-            }
-            return (
-              <p className={cl.tag} key={tag}>
-                {tag.toUpperCase()}{" "}
-              </p>
-            );
-          })}
-        </div>
+        <TagsBlock items={item.tags} />
         <div className={cl.titleBlock}>
           <h2 className={cl.title}>{item.title}</h2>
           <p className={cl.description}>{item.descrition}</p>
         </div>
         <div className={cl.buttons}>
-          <PrimaryButton>
-            <div className={cl.buttonContent}>
-              <Image
-                src="/svg/play.svg"
-                width={18}
-                height={18}
-                loading="lazy"
-                alt=""
-              />
-              <span className={cl.buttonText}>Watch Now</span>
-            </div>
-          </PrimaryButton>
+          <Link href={`/anime/anime-page/${item.id}`}>
+            <PrimaryButton tabIndex={-1}>
+              <div className={cl.buttonContent}>
+                <Image
+                  src="/svg/play.svg"
+                  width={18}
+                  height={18}
+                  loading="lazy"
+                  alt=""
+                />
+                <span className={cl.buttonText}>Watch Now</span>
+              </div>
+            </PrimaryButton>
+          </Link>
           <SecondaryButton>
             <div className={cl.buttonContent}>
               <Image

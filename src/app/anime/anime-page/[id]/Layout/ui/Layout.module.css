@@ -1,0 +1,56 @@
+.secondBgWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 450px;
+  z-index: -1;
+  overflow: hidden;
+}
+.bgImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bgImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bgImageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    ellipse farthest-side at 60% 50%,
+    rgba(0, 0, 0, 0) 10%,
+    var(--color-backgroundOpacity) 60%,
+    var(--color-background) 80%
+  );
+  z-index: 1;
+}
+.bgImage {
+  object-fit: cover;
+  background-image: radial-gradient(
+    ellipse farthest-side at 60% 40%,
+    rgba(0, 0, 0, 0) 10%,
+    var(--color-backgroundOpacity) 60%,
+    var(--color-background) 80%
+  );
+}
+.layoutWrapper {
+  display: flex;
+
+  column-gap: 48px;
+  padding-top: 200px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+.aside {
+}

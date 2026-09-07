@@ -15,11 +15,14 @@ export const Navigation = () => {
       </AnimatedLink>
       <AnimatedLink
         isActive={pathname === "/anime/new-releases"}
-        href="/new-releases"
+        href="/anime/new-releases"
       >
         New Releases
       </AnimatedLink>
-      <AnimatedLink isActive={pathname === "/anime/genres"} href="/genres">
+      <AnimatedLink
+        isActive={pathname === "/anime/genres"}
+        href="/anime/genres"
+      >
         Genres
       </AnimatedLink>
     </>

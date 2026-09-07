@@ -1,0 +1,19 @@
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.titleBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+.description {
+  color: var(--color-textSecondary);
+}

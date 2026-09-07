@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat_Alternates, Geist } from "next/font/google";
+import { Montserrat_Alternates, Geist, Outfit } from "next/font/google";
 import "./styles/normalize.css";
 import "./styles/global.css";
 import { Header } from "@/widgets/Header";
@@ -15,6 +15,11 @@ const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin", "cyrillic"],
 });
+const outfit = Outfit({
+  weight: ["500", "700"],
+  variable: "--font-outfit",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "AniFirst",
@@ -27,12 +32,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ru"
-      className={`${geist.className} ${monserratAlternates.variable} ${geist.variable}`}
+      className={`${geist.className} ${monserratAlternates.variable} ${geist.variable} ${outfit.variable}`}
     >
       <head>
         <style>{`:root {\n${cssVars}\n}`}</style>
       </head>
-      <body>
+      <body style={{ position: "relative" }}>
         <Header />
         {children}
         <Footer />

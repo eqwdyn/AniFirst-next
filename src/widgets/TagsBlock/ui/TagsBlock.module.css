@@ -1,0 +1,27 @@
+.tagsBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--color-primaryOpacity);
+  border-radius: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+.firstTag {
+  background-color: var(--color-tetriartyOpacity);
+  color: var(--color-tetriarty);
+  border: 1px solid var(--color-tetriarty);
+}
+
+@media (max-width: 768px) {
+  .tag {
+    padding: 2px 6px;
+    font-size: 0.6rem;
+  }
+}

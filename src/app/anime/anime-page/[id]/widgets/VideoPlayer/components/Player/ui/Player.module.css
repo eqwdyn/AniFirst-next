@@ -1,0 +1,12 @@
+.container {
+  /* width: 100%;
+  max-height: 360px;
+  height: 100%; */
+  padding-block: 170px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background-color: var(--color-backgroundSecondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

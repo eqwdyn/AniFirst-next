@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  column-gap: 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab {
+  color: var(--color-textSecondary);
+  font-family: var(--font-outfit);
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding-bottom: 5px;
+
+  transition: 0.2s ease-in all;
+}
+.tab:hover {
+  color: var(--color-primary);
+}
+
+.curTab {
+  color: var(--color-primary);
+  font-weight: bold;
+  position: relative;
+}
+.curTab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background-color: var(--color-primary);
+}
