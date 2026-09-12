@@ -5,11 +5,16 @@ import Image from "next/image";
 
 interface Props {
   item: IEpisode;
+  setActiveEp: (item: number) => void;
+  isActive: boolean;
 }
 
-export const Episode: FC<Props> = ({ item }) => {
+export const Episode: FC<Props> = ({ item, setActiveEp, isActive }) => {
   return (
-    <article className={cl.container}>
+    <article
+      className={isActive ? `${cl.container} ${cl.active}` : cl.container}
+      onClick={() => setActiveEp(item.order)}
+    >
       <div className={cl.time}>
         <span>{item.timeMinutes}m</span>
       </div>

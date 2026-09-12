@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "ru-images-s.kinorium.com",
+        hostname: "i.kodikres.com",
       },
     ],
   },

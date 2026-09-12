@@ -8,10 +8,11 @@ import { Episodes } from "@/app/anime/anime-page/[id]/widgets/Tabs/components/Ep
 import { IEpisode } from "@/entities/Episode.ent";
 
 interface Props {
-  //   items: string[];
+  activeEp: number;
+  setActiveEp: (item: number) => void;
 }
 
-export const Tabs: FC<Props> = ({}) => {
+export const Tabs: FC<Props> = ({ setActiveEp, activeEp }) => {
   const items = ["Episodes", "Characters", "Reviews (142)", "Related"];
 
   const [curItem, setCurItem] = useState<string>(items[0]);
@@ -62,7 +63,11 @@ export const Tabs: FC<Props> = ({}) => {
         onClick={(item) => setCurItem(item)}
       />
       <Show when={curItem === "Episodes"}>
-        <Episodes items={episodes} />
+        <Episodes
+          items={episodes}
+          activeEp={activeEp}
+          setActiveEp={setActiveEp}
+        />
       </Show>
     </div>
   );

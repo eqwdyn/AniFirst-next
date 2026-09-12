@@ -13,6 +13,9 @@
 .container:hover {
   border-color: var(--color-primary);
 }
+.active {
+  border-color: var(--color-primary);
+}
 
 .time {
   position: absolute;

@@ -1,6 +1,6 @@
 .link {
   position: relative;
-  padding-bottom: 5px;
+  padding-block: 5px;
   transition: color 0.2s ease-in;
 }
 .link:hover {

@@ -1,18 +1,18 @@
-"use client";
+import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
+import { AnimesService } from "@services/AnimeService";
 
-import { MockAnimes } from "@/stores/MockAnimes.store";
-import { AnimeBlock } from "@/widgets/AnimeBlock";
-import { AnimeCard } from "@/widgets/AnimeCard";
+export const TrendingAnimesRow = async () => {
+  const items = await AnimesService.getTrending();
 
-export const TrendingAnimesRow = () => {
+  if (!items) return <>Not Items</>;
+
   return (
-    <AnimeBlock
+    <AnimeCardsBlock
       title="Trending Now"
       titleId="trending-animes"
       description="Most watched in the last 24 hours"
       urlToAll="/anime/trending"
-      items={MockAnimes}
-      renderItems={(item) => <AnimeCard item={item} />}
+      items={items}
     />
   );
 };

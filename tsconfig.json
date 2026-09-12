@@ -26,6 +26,12 @@
             "@/*": [
                 "./src/*"
             ],
+            "@services/*": [
+                "./src/services/*"
+            ],
+            "@widgets/*": [
+                "./src/widgets/*"
+            ],
             "@pages/*": [
                 "./src/pages/*"
             ],

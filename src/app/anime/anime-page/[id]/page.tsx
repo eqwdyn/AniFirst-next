@@ -3,8 +3,8 @@ import { AnimesService } from "@/services/AnimeService";
 import { HeroBannerVM } from "@/app/anime/anime-page/[id]/widgets/HeroBanner";
 import { AnimePageLayout } from "@/app/anime/anime-page/[id]/Layout";
 import { ActionButtons } from "@/app/anime/anime-page/[id]/widgets/ActionButtons";
-import { Tabs } from "@/app/anime/anime-page/[id]/widgets/Tabs";
-import { VideoPlayer } from "./widgets/VideoPlayer";
+import { ScreenShots } from "./widgets/ScreenShots";
+import { UserEpisodesControll } from "./widgets/UserEpisodesControll";
 
 export default async function Anime({
   params,
@@ -14,6 +14,13 @@ export default async function Anime({
   const { id } = await params;
   const item = await AnimesService.getById(Number(id));
   const bgImageSrc = "/HeroBg.png";
+  const screensUrls = [
+    "/HeroBg.png",
+    "/hell-mode-v2.png",
+    "/hell-mode.png",
+    "https://i.kodikres.com/screenshots/seria/141119/1.jpg",
+  ];
+  const startEp = 1;
 
   if (!item) {
     return <p>Not item</p>;
@@ -31,8 +38,8 @@ export default async function Anime({
         <AnimePageLayout.Content>
           <HeroBannerVM item={item} />
           <ActionButtons />
-          <Tabs />
-          <VideoPlayer />
+          <UserEpisodesControll startEp={startEp} />
+          <ScreenShots screensUrls={screensUrls} />
         </AnimePageLayout.Content>
       </AnimePageLayout.LayoutWrapper>
       <div style={{ paddingTop: 32 }} />

@@ -6,4 +6,10 @@ export class ApiService {
     const anime = MockAnimes.find((item) => item.id === id);
     return anime;
   }
+  async getNewReleases(): Promise<IAnime[] | undefined> {
+    return MockAnimes;
+  }
+  async getTrending(): Promise<IAnime[] | undefined> {
+    return MockAnimes;
+  }
 }

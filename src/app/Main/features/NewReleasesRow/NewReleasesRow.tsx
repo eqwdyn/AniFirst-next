@@ -1,18 +1,18 @@
-"use client";
+import { AnimesService } from "@services/AnimeService";
+import { AnimeCardsBlock } from "../../../../widgets/AnimeCardsBlock";
 
-import { MockAnimes } from "@/stores/MockAnimes.store";
-import { AnimeBlock } from "@/widgets/AnimeBlock";
-import { AnimeCard } from "@/widgets/AnimeCard";
+export const NewReleasesRow = async () => {
+  const items = await AnimesService.getNewReleases();
 
-export const NewReleasesRow = () => {
+  if (!items) return <>Not Items</>;
+
   return (
-    <AnimeBlock
+    <AnimeCardsBlock
       title="New Releases"
       titleId="new-releases-animes"
       description="Fresh episodes updated today"
       urlToAll="/anime/new-releases"
-      items={MockAnimes}
-      renderItems={(item) => <AnimeCard item={item} />}
+      items={items}
     />
   );
 };
