@@ -44,7 +44,7 @@
 .layoutWrapper {
   display: flex;
 
-  column-gap: 48px;
+  gap: 48px;
   padding-top: 200px;
 }
 .content {
@@ -53,4 +53,11 @@
   row-gap: 32px;
 }
 .aside {
+}
+
+@media (max-width: 768px) {
+  .layoutWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
 }

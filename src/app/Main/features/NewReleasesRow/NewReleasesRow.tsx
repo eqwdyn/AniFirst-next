@@ -1,5 +1,5 @@
 import { AnimesService } from "@services/AnimeService";
-import { AnimeCardsBlock } from "../../../../widgets/AnimeCardsBlock";
+import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 
 export const NewReleasesRow = async () => {
   const items = await AnimesService.getNewReleases();
