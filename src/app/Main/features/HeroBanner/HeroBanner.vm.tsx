@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Show } from "@shared/ui/Show";
 
 interface Props {
-  item: IAnime;
+  item?: IAnime;
 }
 
 export const HeroBannerVM: FC<Props> = ({ item }) => {
@@ -18,26 +18,30 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
   return (
     <section className={cl.hero}>
       <div className={cl.bgImage}>
-        <Image
-          src={item.posterUrl}
-          alt={item.title}
-          fill
-          priority
-          sizes="100vw"
-          className={cl.bgImage}
-          loading="eager"
-        />
+        <Show when={!!item?.posterUrl && !!item.title}>
+          {!!item?.posterUrl && !!item.title ? (
+            <Image
+              src={item?.posterUrl ?? null}
+              alt={item?.title}
+              fill
+              priority
+              sizes="100vw"
+              className={cl.bgImage}
+              loading="eager"
+            />
+          ) : null}
+        </Show>
       </div>
       <div className={cl.content}>
-        <Show when={!!item.tags}>
-          {item.tags ? <TagsBlock items={item.tags} /> : null}
+        <Show when={!!item?.tags}>
+          {item?.tags ? <TagsBlock items={item?.tags} /> : null}
         </Show>
         <div className={cl.titleBlock}>
-          <h2 className={cl.title}>{item.title}</h2>
-          <p className={cl.description}>{item.descrition}</p>
+          <h2 className={cl.title}>{item?.title}</h2>
+          <p className={cl.description}>{item?.description}</p>
         </div>
         <div className={cl.buttons}>
-          <Link href={`/anime/anime-page/${item.shikimori_id}`}>
+          <Link href={`/anime/anime-page/${item?.shikimori_id}`}>
             <PrimaryButton tabIndex={-1}>
               <div className={cl.buttonContent}>
                 <Image

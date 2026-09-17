@@ -28,7 +28,7 @@ export default async function Anime({
 
   return (
     <AnimePageLayout>
-      <AnimePageLayout.BgImage src={bgImageSrc} />
+      {/* <AnimePageLayout.BgImage src={bgImageSrc} /> */}
 
       <AnimePageLayout.LayoutWrapper>
         <AnimePageLayout.Aside>

@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+}
+
+.results {
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+  position: absolute;
+  overflow-y: auto;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+
+  background-color: var(--color-secondary);
+  padding: 10px;
+  border-radius: 12px;
+  max-height: 300px;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.results::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

@@ -1,6 +1,9 @@
+import { AnimesService } from "@services/AnimeService";
 import { HeroBannerVM } from "./HeroBanner.vm";
-import { MockAnimes } from "@/stores/MockAnimes.store";
 
-export const HeroBanner = () => {
-  return <HeroBannerVM item={MockAnimes[0]} />;
+export const HeroBanner = async () => {
+  const item = await AnimesService.getHeroAnime();
+  console.log(item);
+
+  return <HeroBannerVM item={item} />;
 };

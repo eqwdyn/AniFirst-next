@@ -1,20 +1,34 @@
 "use client";
 
-import { useState, type FC } from "react";
+import { type FC } from "react";
 import cl from "./SearchBar.module.css";
 import Image from "next/image";
 
 interface Props {
   placeholder?: string;
-  onSearch: (text: string) => void;
+  onSearch?: (text: string) => void;
+  className?: string;
+  onChange?: () => void;
+  text: string;
+  setText: (t: string) => void;
+  onFocus?: () => void;
 }
 
-export const SearchBar: FC<Props> = ({ placeholder, onSearch }) => {
-  const [text, setText] = useState<string>("");
-
+export const SearchBar: FC<Props> = ({
+  placeholder,
+  onChange,
+  onSearch,
+  className,
+  text,
+  setText,
+  onFocus,
+}) => {
   return (
-    <div className={cl.wrapper}>
-      <button className={cl.searchButton} onClick={() => onSearch(text)}>
+    <div className={className ? `${cl.wrapper} ${className}` : cl.wrapper}>
+      <button
+        className={cl.searchButton}
+        onClick={() => (onSearch ? onSearch(text) : null)}
+      >
         <Image
           src="/svg/search.svg"
           width={16}
@@ -27,12 +41,21 @@ export const SearchBar: FC<Props> = ({ placeholder, onSearch }) => {
       <input
         placeholder={placeholder}
         className={cl.input}
+        autoComplete="off"
+        data-lpignore="true"
+        data-1p-ignore
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value);
+          if (onChange) {
+            onChange();
+          }
+        }}
+        onFocus={onFocus}
         aria-label={placeholder ?? "Search"}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            onSearch(text);
+            onSearch ? onSearch(text) : null;
           }
         }}
         name={placeholder ? `${placeholder}-input` : "search-input"}
