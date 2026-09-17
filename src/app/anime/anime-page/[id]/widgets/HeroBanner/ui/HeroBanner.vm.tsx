@@ -1,33 +1,47 @@
-import { IAnime } from "@/entities/Anime.ent";
 import type { FC } from "react";
 import cl from "./HeroBanner.module.css";
 import { TagsBlock } from "@/widgets/TagsBlock";
 import { Metrics } from "@/app/anime/anime-page/[id]/widgets/HeroBanner/components/Metrics";
+import { Show } from "@shared/ui/Show";
 
 interface Props {
-  item: IAnime;
+  tags?: string[];
+  title: string;
+  description?: string;
+  rating?: number;
+  episodes?: number;
+  status?: "Airing" | "Done";
+  studio?: string;
 }
 
-export const HeroBannerVM: FC<Props> = ({ item }) => {
-  const rating = 4.5;
-  const episodes = 24;
-  const status = "Airing";
-  const studio = "MAPPA";
+export const HeroBannerVM: FC<Props> = ({
+  tags,
+  title,
+  description,
+  rating,
+  episodes,
+  status,
+  studio,
+}) => {
   return (
     <div className={cl.headerBlock}>
-      <TagsBlock items={item.tags} />
+      <Show when={!!tags}>
+        <TagsBlock items={tags} />
+      </Show>
 
       <div className={cl.titleBlock}>
-        <h2 className={cl.title}>{item.title}</h2>
-        <Metrics
-          rating={rating}
-          episodes={episodes}
-          status={status}
-          studio={studio}
-        />
+        <h2 className={cl.title}>{title}</h2>
+        <Show when={!!rating && !!status && !!episodes && !!studio}>
+          <Metrics
+            rating={rating}
+            episodes={episodes}
+            status={status}
+            studio={studio}
+          />
+        </Show>
       </div>
 
-      <p className={cl.description}>{item.descrition}</p>
+      <p className={cl.description}>{description}</p>
     </div>
   );
 };

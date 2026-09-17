@@ -7,6 +7,8 @@ import Image from "next/image";
 interface Props {}
 
 export const ActionButtons: FC<Props> = ({}) => {
+  const lang = "ru";
+
   return (
     <div className={cl.buttons}>
       <PrimaryButton>
@@ -18,7 +20,9 @@ export const ActionButtons: FC<Props> = ({}) => {
             loading="lazy"
             alt=""
           />
-          <span className={cl.buttonText}>Watch Episode 1</span>
+          <span className={cl.buttonText}>
+            {lang === "ru" ? "Смотреть" : "Watch"}
+          </span>
         </div>
       </PrimaryButton>
       <SecondaryButton>
@@ -30,7 +34,9 @@ export const ActionButtons: FC<Props> = ({}) => {
             loading="lazy"
             alt=""
           />
-          <span className={cl.buttonText}>Add to WatchList</span>
+          <span className={cl.buttonText}>
+            {lang === "ru" ? "Добавить в список" : "Watch Later"}
+          </span>
         </div>
       </SecondaryButton>
     </div>

@@ -11,6 +11,7 @@
   align-items: center;
   column-gap: 6px;
   position: relative;
+  width: max-content;
 }
 .metric::after {
   content: "";

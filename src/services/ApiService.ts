@@ -1,15 +1,34 @@
-import { IAnime } from "@/entities/Anime.ent";
-import { MockAnimes } from "@/stores/MockAnimes.store";
+import axios from "axios";
+import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
+import { IAnimeFull } from "@entities/AnimeFull";
+
+const api = axios.create({
+  baseURL: process.env.SERVER_URL,
+});
+const getTrendingPath = "/trending";
+const getNewReleasesPath = "/new-releases";
+const getAnimeByIdPath = "/anime";
 
 export class ApiService {
-  async getAnimeById(id: number): Promise<IAnime | undefined> {
-    const anime = MockAnimes.find((item) => item.id === id);
-    return anime;
+  async getAnimeById(id: number | string): Promise<IAnimeFull | undefined> {
+    const { data: animes } = await api.get<IAnimeFull>(
+      `${getAnimeByIdPath}/${id}`,
+    );
+
+    return animes;
   }
-  async getNewReleases(): Promise<IAnime[] | undefined> {
-    return MockAnimes;
+  async getNewReleases(limit: number): Promise<IShikimoriAnime[] | undefined> {
+    const { data: animes } = await api.get<IShikimoriAnime[]>(
+      `${getNewReleasesPath}?limit=${limit}`,
+    );
+
+    return animes;
   }
-  async getTrending(): Promise<IAnime[] | undefined> {
-    return MockAnimes;
+  async getTrending(limit: number): Promise<IShikimoriAnime[] | undefined> {
+    const { data: animes } = await api.get<IShikimoriAnime[]>(
+      `${getTrendingPath}?limit=${limit}`,
+    );
+
+    return animes;
   }
 }

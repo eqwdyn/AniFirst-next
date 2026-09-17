@@ -1,28 +1,28 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type FC } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import cl from "./AnimeBlock.module.css";
 import { ArrowButton } from "@/widgets/AnimeBlock/components/ArrowButton";
 import { Slider } from "@/widgets/Slider";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 
-interface Props {
+interface Props<T> {
   titleId: string;
   title: string;
   description: string;
   urlToAll: string;
-  items: any[];
-  renderItems: (item: any) => React.ReactNode;
+  items: T[];
+  renderItems: (item: T) => React.ReactNode;
 }
 
-export const AnimeBlock: FC<Props> = ({
+export const AnimeBlock = <T,>({
   titleId,
   title,
   description,
   items,
   urlToAll,
   renderItems,
-}) => {
+}: Props<T>) => {
   const listRef = useRef<HTMLUListElement | null>(null);
   const cardWidth = 224;
   const gap = 0;
@@ -107,7 +107,7 @@ export const AnimeBlock: FC<Props> = ({
         </div>
       </header>
 
-      <Slider items={items} listRef={listRef} renderItem={renderItems} />
+      <Slider<T> items={items} listRef={listRef} renderItem={renderItems} />
     </section>
   );
 };

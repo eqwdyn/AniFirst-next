@@ -1,4 +1,3 @@
-import { IAnime } from "@/entities/Anime.ent";
 import { HeroBannerVM } from "./HeroBanner.vm";
 import { MockAnimes } from "@/stores/MockAnimes.store";
 

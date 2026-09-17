@@ -1,10 +1,11 @@
 export interface IAnime {
-  id: number;
+  shikimori_id: string;
+  kodik_id?: string;
   title: string;
-  descrition: string;
-  year: number;
-  tags: string[];
-  imgSrc: string;
-  totalEpisodes: number;
-  lastEpisode: number;
+  descrition?: string;
+  year?: string;
+  tags?: string[];
+  posterUrl: string;
+  totalEpisodes?: number;
+  lastEpisode?: number;
 }

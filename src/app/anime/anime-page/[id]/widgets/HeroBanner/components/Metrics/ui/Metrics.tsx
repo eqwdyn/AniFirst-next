@@ -3,10 +3,10 @@ import cl from "./Metrics.module.css";
 import Image from "next/image";
 
 interface Props {
-  rating: number;
-  episodes: number;
-  status: "Airing" | "Done";
-  studio: string;
+  rating?: number;
+  episodes?: number;
+  status?: "Airing" | "Done";
+  studio?: string;
 }
 
 export const Metrics: FC<Props> = ({ status, studio, episodes, rating }) => {

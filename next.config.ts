@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "i.kodikres.com",
       },
+      {
+        hostname: "shikimori.io",
+      },
     ],
   },
 };

@@ -1,10 +1,15 @@
 import type { FC } from "react";
 import cl from "./AnimeCard.module.css";
-import { IAnime } from "@/entities/Anime.ent";
 import { Show } from "@/shared/ui/Show";
 import Image from "next/image";
-import Link from "next/link";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
+import { IAnime } from "@entities/Anime.ent";
+
+// export interface IAnimeCard {
+//   shikimori_id: number;
+//   imgSrc: string;
+//   title: string;
+// }
 
 interface Props {
   item: IAnime;
@@ -13,11 +18,14 @@ interface Props {
 
 export const AnimeCard: FC<Props> = ({ item, footer }) => {
   return (
-    <NotStyledLink href={`/anime/anime-page/${item.id}`} className={cl.wrapper}>
+    <NotStyledLink
+      href={`/anime/anime-page/${item.shikimori_id}`}
+      className={cl.wrapper}
+    >
       <article className={cl.container}>
         <div className={cl.content}>
           <Image
-            src={item.imgSrc}
+            src={item.posterUrl}
             alt={item.title}
             fill
             sizes="400px"
@@ -27,9 +35,9 @@ export const AnimeCard: FC<Props> = ({ item, footer }) => {
 
           <div className={cl.media}>
             <h3 className={cl.title}>{item.title}</h3>
-            <p className={cl.episodes}>
+            {/* <p className={cl.episodes}>
               {item.lastEpisode} / {item.totalEpisodes} Episodes
-            </p>
+            </p> */}
           </div>
         </div>
       </article>

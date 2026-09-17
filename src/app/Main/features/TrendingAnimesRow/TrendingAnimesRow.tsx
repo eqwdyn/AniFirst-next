@@ -3,14 +3,19 @@ import { AnimesService } from "@services/AnimeService";
 
 export const TrendingAnimesRow = async () => {
   const items = await AnimesService.getTrending();
+  const lang = "ru";
 
   if (!items) return <>Not Items</>;
 
   return (
     <AnimeCardsBlock
-      title="Trending Now"
+      title={lang === "ru" ? "Популярное" : "Trending Now"}
       titleId="trending-animes"
-      description="Most watched in the last 24 hours"
+      description={
+        lang === "ru"
+          ? "Наиболее популяные аниме в последнее время"
+          : "Most watched in the last 24 hours"
+      }
       urlToAll="/anime/trending"
       items={items}
     />

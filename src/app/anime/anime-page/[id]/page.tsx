@@ -5,6 +5,7 @@ import { AnimePageLayout } from "@/app/anime/anime-page/[id]/Layout";
 import { ActionButtons } from "@/app/anime/anime-page/[id]/widgets/ActionButtons";
 import { ScreenShots } from "./widgets/ScreenShots";
 import { UserEpisodesControll } from "./widgets/UserEpisodesControll";
+import { VideoPlayer } from "./widgets/VideoPlayer";
 
 export default async function Anime({
   params,
@@ -12,15 +13,14 @@ export default async function Anime({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const item = await AnimesService.getById(Number(id));
+  const item = await AnimesService.getById(id);
   const bgImageSrc = "/HeroBg.png";
-  const screensUrls = [
-    "/HeroBg.png",
-    "/hell-mode-v2.png",
-    "/hell-mode.png",
-    "https://i.kodikres.com/screenshots/seria/141119/1.jpg",
-  ];
-  const startEp = 1;
+  //   const screensUrls = [
+  //     "/HeroBg.png",
+  //     "/hell-mode-v2.png",
+  //     "/hell-mode.png",
+  //     "https://i.kodikres.com/screenshots/seria/141119/1.jpg",
+  //   ];
 
   if (!item) {
     return <p>Not item</p>;
@@ -32,14 +32,30 @@ export default async function Anime({
 
       <AnimePageLayout.LayoutWrapper>
         <AnimePageLayout.Aside>
-          <Poster imageSrc={item.imgSrc} />
+          <Poster imageSrc={item.posterUrl} />
         </AnimePageLayout.Aside>
 
         <AnimePageLayout.Content>
-          <HeroBannerVM item={item} />
+          <HeroBannerVM
+            tags={item.tags}
+            title={item.title}
+            description={item.description}
+            rating={item.rating}
+            episodes={item.episodes}
+            status={
+              item.status === "released"
+                ? "Done"
+                : item.status === "anons"
+                  ? "Airing"
+                  : "Airing"
+            }
+            studio={item.studio}
+          />
           <ActionButtons />
-          <UserEpisodesControll startEp={startEp} />
-          <ScreenShots screensUrls={screensUrls} />
+          {/* <UserEpisodesControll startEp={startEp} /> */}
+          <VideoPlayer embedUrl={item.playerUrl} />
+
+          <ScreenShots screensUrls={item.screenshots} />
         </AnimePageLayout.Content>
       </AnimePageLayout.LayoutWrapper>
       <div style={{ paddingTop: 32 }} />

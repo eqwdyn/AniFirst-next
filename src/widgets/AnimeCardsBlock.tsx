@@ -21,7 +21,7 @@ export const AnimeCardsBlock: FC<Props> = ({
   urlToAll,
 }) => {
   return (
-    <AnimeBlock
+    <AnimeBlock<IAnime>
       title={title}
       titleId={titleId}
       description={description}
