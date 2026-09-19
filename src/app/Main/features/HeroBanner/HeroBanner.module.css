@@ -42,6 +42,7 @@
 .buttons {
   display: flex;
   column-gap: 16px;
+  align-items: center;
 }
 .buttonContent {
   display: flex;

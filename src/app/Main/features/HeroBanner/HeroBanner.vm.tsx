@@ -3,17 +3,18 @@ import Image from "next/image";
 import type { FC } from "react";
 import cl from "./HeroBanner.module.css";
 import { PrimaryButton } from "@/shared/ui/PrimaryButton";
-import { SecondaryButton } from "@/shared/ui/SecondaryButton";
 import { TagsBlock } from "@/widgets/TagsBlock";
 import Link from "next/link";
 import { Show } from "@shared/ui/Show";
+import { MyListButton } from "@/features/MyListButton";
+import { getLang } from "@shared/utils/getLang";
 
 interface Props {
   item?: IAnime;
 }
 
 export const HeroBannerVM: FC<Props> = ({ item }) => {
-  const lang = "ru";
+  const lang = getLang();
 
   return (
     <section className={cl.hero}>
@@ -57,20 +58,7 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
               </div>
             </PrimaryButton>
           </Link>
-          <SecondaryButton>
-            <div className={cl.buttonContent}>
-              <Image
-                src="/svg/plus.svg"
-                width={18}
-                height={18}
-                loading="lazy"
-                alt=""
-              />
-              <span className={`${cl.buttonText} ${cl.secondaryButtonText}`}>
-                {lang === "ru" ? "Добавить в список" : "Add to List"}
-              </span>
-            </div>
-          </SecondaryButton>
+          {item ? <MyListButton item={item} /> : null}
         </div>
       </div>
     </section>

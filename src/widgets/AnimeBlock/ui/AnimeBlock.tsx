@@ -10,7 +10,7 @@ interface Props<T> {
   titleId: string;
   title: string;
   description: string;
-  urlToAll: string;
+  urlToAll?: string;
   items: T[];
   renderItems: (item: T) => React.ReactNode;
 }
@@ -101,9 +101,11 @@ export const AnimeBlock = <T,>({
             disabled={!canScrollRight}
             className={cl.arrowButton}
           />
-          <NotStyledLink href={urlToAll} className={cl.seeAllLink}>
-            See All
-          </NotStyledLink>
+          {urlToAll ? (
+            <NotStyledLink href={urlToAll} className={cl.seeAllLink}>
+              See All
+            </NotStyledLink>
+          ) : null}
         </div>
       </header>
 

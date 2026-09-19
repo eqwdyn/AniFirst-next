@@ -7,9 +7,10 @@
 
   transition: 0.2s ease-in background-color;
 }
-
-.button:hover {
-  background-color: var(--color-primaryTint);
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--color-primaryTint);
+  }
 }
 .button:active {
   background-color: var(--color-primaryTint);
@@ -21,9 +22,3 @@
     padding: 10px 20px;
   }
 }
-
-/* @media (max-width: 700px) {
-  .button {
-    padding: 7px 14px;
-  }
-} */

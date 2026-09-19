@@ -3,11 +3,13 @@ import { ApiService } from "@/services/ApiService";
 import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
 import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
+import { IAnimeKodik } from "@entities/FromServer/AnimeKodik.ent";
 
 interface IDPApi {
-  getAnimeById: (id: string) => Promise<IAnimeFull | undefined>;
+  getAnimeById: (id: string) => Promise<IAnimeKodik | undefined>;
   getNewReleases: (limit: number) => Promise<IShikimoriAnime[] | undefined>;
   getTrending: (limit: number) => Promise<IShikimoriAnime[] | undefined>;
+  getTrendingKodik: (limit: number) => Promise<IAnimeKodik[] | undefined>;
   getHeroAnime: () => Promise<IAnime | undefined>;
   searchAnimes: (title: string) => Promise<IAnimeSearch[]>;
 }
@@ -45,6 +47,16 @@ class AnimesServiceC {
 
       const animes = this.parseAnimes(responsedAnimes);
       return animes;
+    } catch (e: any) {
+      console.error("Error while get Anime Trends: ", e.message);
+    }
+  }
+
+  async getTrendingKodik(): Promise<IAnime[] | undefined> {
+    try {
+      const responsedAnimes = await this.apiService.getTrendingKodik(20);
+
+      return responsedAnimes;
     } catch (e: any) {
       console.error("Error while get Anime Trends: ", e.message);
     }

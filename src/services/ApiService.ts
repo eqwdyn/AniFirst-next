@@ -1,21 +1,22 @@
 import axios from "axios";
 import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
-import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import { IAnime } from "@entities/Anime.ent";
+import { IAnimeKodik } from "@entities/FromServer/AnimeKodik.ent";
 
 const api = axios.create({
   baseURL: process.env.SERVER_URL,
 });
 const getTrendingPath = "/trending";
+const getTrendingKodikPath = "/trending-kodik";
 const getHeroAnimePath = "/hero-anime";
 const getNewReleasesPath = "/new-releases";
 const getAnimeByIdPath = "/anime";
 const searchAnimesPath = "/search";
 
 export class ApiService {
-  async getAnimeById(id: number | string): Promise<IAnimeFull | undefined> {
-    const { data: animes } = await api.get<IAnimeFull>(
+  async getAnimeById(id: number | string): Promise<IAnimeKodik | undefined> {
+    const { data: animes } = await api.get<IAnimeKodik>(
       `${getAnimeByIdPath}/${id}`,
     );
 
@@ -31,6 +32,13 @@ export class ApiService {
   async getTrending(limit: number): Promise<IShikimoriAnime[] | undefined> {
     const { data: animes } = await api.get<IShikimoriAnime[]>(
       `${getTrendingPath}?limit=${limit}`,
+    );
+
+    return animes;
+  }
+  async getTrendingKodik(limit: number): Promise<IAnimeKodik[] | undefined> {
+    const { data: animes } = await api.get<IAnimeKodik[]>(
+      `${getTrendingKodikPath}?limit=${limit}`,
     );
 
     return animes;

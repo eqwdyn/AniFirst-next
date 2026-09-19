@@ -5,6 +5,7 @@ import "./styles/global.css";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
 import { parseColors } from "@/shared/utils/parseColorsToCssVars";
+import Script from "next/script";
 
 const monserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat-alternates",

@@ -2,45 +2,24 @@
 
 import { ContinueWatchingCard } from "@/app/Main/features/ContinueWatchingRow/components/ContinueWatchingCard/ui/ContinueWatchingCard";
 import { AnimeBlock } from "@/widgets/AnimeBlock";
-import { CONTINUE_TO_WATCH_KEY } from "@shared/config";
 import { useEffect, useState } from "react";
 import { IContinueToWatchAnime } from "@entities/IContinueToWatchAnime.ent";
-import { isIContinueToWatchAnime } from "@shared/utils/isIContinueToWatchAnime";
+import { Skeleton } from "./components/Skeleton";
+import { ClientAnimesService } from "@services/ClientAnimesService";
 
 export const ContinueWatchingRow = () => {
-  const [animes, setAnimes] = useState<IContinueToWatchAnime[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(CONTINUE_TO_WATCH_KEY);
-      if (!raw) {
-        setAnimes([]);
-        setLoading(false);
-        return;
-      }
-
-      const parsed = JSON.parse(raw);
-
-      if (!Array.isArray(parsed)) {
-        setAnimes([]);
-        setLoading(false);
-        return;
-      }
-
-      const validAnimes = parsed.filter(isIContinueToWatchAnime);
-      setAnimes(validAnimes);
-    } catch (e) {
-      console.warn("Failed to parse continue-watching data", e);
-      setAnimes([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
+  const [animes, setAnimes] = useState<IContinueToWatchAnime[] | null>(null);
   const lang = "ru";
 
-  if (loading || animes.length === 0) {
+  useEffect(() => {
+    setAnimes(ClientAnimesService.getContinueToWatch() ?? []);
+  }, []);
+
+  if (!animes) {
+    return <Skeleton />;
+  }
+
+  if (animes.length === 0) {
     return null;
   }
 

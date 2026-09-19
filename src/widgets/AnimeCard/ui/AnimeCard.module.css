@@ -70,9 +70,15 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 440px) {
   .container {
     width: 140px;
+    aspect-ratio: 0.65;
+  }
+}
+@media (max-width: 340px) {
+  .container {
+    width: 135px;
     aspect-ratio: 0.65;
   }
 }

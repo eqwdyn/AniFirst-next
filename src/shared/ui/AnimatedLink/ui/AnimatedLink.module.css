@@ -3,8 +3,10 @@
   padding-block: 5px;
   transition: color 0.2s ease-in;
 }
-.link:hover {
-  color: var(--color-primary);
+@media (hover: hover) {
+  .link:hover {
+    color: var(--color-primary);
+  }
 }
 .link:focus-visible {
   color: var(--color-primary);

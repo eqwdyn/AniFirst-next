@@ -1,8 +1,9 @@
 import { IAnime } from "@entities/Anime.ent";
 
 export interface IContinueToWatchAnime extends IAnime {
-  lastViewedEpisode: number;
+  watchEpisode: number;
+  watchSeason: number;
   totalEpisodes: number;
-  lastViewedTime: number;
+  watchTime: number;
   totalTime: number;
 }

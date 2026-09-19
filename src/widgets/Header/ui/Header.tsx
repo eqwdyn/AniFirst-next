@@ -13,7 +13,7 @@ export const Header = ({}) => {
     <header className={cl.header}>
       <div className={cl.content}>
         <div className={cl.logoWrapper}>
-          <NotStyledLink href="/">
+          <NotStyledLink href="/" className={cl.logoLink}>
             <h1 className={cl.logo}>
               <span>Ani</span>
               <span className={cl.primaryColor}>First</span>
