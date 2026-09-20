@@ -1,15 +1,15 @@
 import { PageLayout } from "./components/Layout/ui/Layout";
 import { AnimesService } from "@services/AnimeService";
 import { getLang } from "@shared/utils/getLang";
-import { NewReleasesClient } from "./components/NewReleasesClient";
+import { TrendingClient } from "./components/TrendingClient";
 
-export default async function MyListPage() {
-  const initialItems = await AnimesService.getNewReleases(1);
+export default async function TrendingPage() {
+  const initialItems = await AnimesService.getTrending(1);
   const lang = getLang();
 
   return (
     <PageLayout>
-      <NewReleasesClient initialItems={initialItems} lang={lang} />
+      <TrendingClient initialItems={initialItems} lang={lang} />
     </PageLayout>
   );
 }

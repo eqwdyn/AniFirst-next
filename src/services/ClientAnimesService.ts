@@ -1,6 +1,5 @@
 import { CONTINUE_TO_WATCH_KEY, MY_LIST_KEY } from "@shared/config";
 import { IAnime } from "@entities/Anime.ent";
-import { IContinueToWatchAnime } from "../entities/IContinueToWatchAnime.ent";
 import { LocalStorageService } from "./LocalStorageService";
 
 class ClientAnimesServiceC {

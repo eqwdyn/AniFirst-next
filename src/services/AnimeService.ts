@@ -3,8 +3,13 @@ import { ApiService } from "@/services/ApiService";
 import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
 import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
+import axios from "axios";
 
-class AnimesServiceC {
+const api = axios.create({
+  baseURL: process.env.SERVER_URL,
+});
+
+export class AnimesServiceC {
   constructor(private readonly apiService: ApiService) {}
 
   async getById(id: string): Promise<IAnimeFull | undefined> {
@@ -20,9 +25,9 @@ class AnimesServiceC {
     }
   }
 
-  async getNewReleases(page: number): Promise<IAnime[] | undefined> {
+  async getNewReleases(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.getNewReleases(1);
+      const responsedAnimes = await this.apiService.getNewReleases(1, page);
 
       const animes = this.parseAnimes(responsedAnimes);
       return animes;
@@ -31,9 +36,9 @@ class AnimesServiceC {
     }
   }
 
-  async getTrending(): Promise<IAnime[] | undefined> {
+  async getTrending(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.getTrending(1);
+      const responsedAnimes = await this.apiService.getTrending(1, page);
 
       const animes = this.parseAnimes(responsedAnimes);
       return animes;
@@ -103,4 +108,4 @@ class AnimesServiceC {
   }
 }
 
-export const AnimesService = new AnimesServiceC(new ApiService());
+export const AnimesService = new AnimesServiceC(new ApiService(api));

@@ -6,7 +6,7 @@ import { Show } from "@shared/ui/Show";
 import { ResultItem } from "./components/ResultItem/ui/ResultItem";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import { useEffect, useRef, useState } from "react";
-import { SearchAnimesAction } from "../../actions/searchAnimes.action";
+import { SearchAnimesAction } from "@app/actions/searchAnimes.action";
 
 export const SearchAnimesBar = () => {
   const [query, setQuery] = useState<string>("");
