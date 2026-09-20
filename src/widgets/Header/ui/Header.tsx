@@ -3,10 +3,10 @@ import { AccPreview } from "../components/AccPreview";
 import cl from "./Header.module.css";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 import { Navigation } from "@/widgets/Header/components/Navigation";
-import Image from "next/image";
-import Link from "next/link";
 import { BurgerButton } from "@/widgets/Header/components/BurgerButton";
 import { SearchLink } from "@/widgets/Header/components/SearchLink";
+import { MockSearchBar } from "../../../shared/ui/MockSearchBar";
+// import { SearchBar } from ""../../../"shared/ui/SearchBar";
 
 export const Header = ({}) => {
   return (
@@ -25,9 +25,9 @@ export const Header = ({}) => {
           </nav>
         </div>
 
-        <div className={cl.searchWrapper}>
-          <SearchAnimesBar />
-        </div>
+        <NotStyledLink href="/anime/search" className={cl.searchWrapper}>
+          <MockSearchBar placeholder="Search anime, movies, creators..." />
+        </NotStyledLink>
 
         <div className={cl.userActions}>
           <AccPreview />
