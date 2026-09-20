@@ -13,6 +13,7 @@ interface Props {
   description: string;
   urlToAll?: string;
   direction?: "straight" | "rows";
+  cursorHandle?: () => void;
 }
 
 export const AnimeCardsBlock: FC<Props> = ({
@@ -22,6 +23,7 @@ export const AnimeCardsBlock: FC<Props> = ({
   description,
   urlToAll,
   direction,
+  cursorHandle,
 }) => {
   return direction === "rows" ? (
     <AnimeBlockRows<IAnime>
@@ -31,6 +33,7 @@ export const AnimeCardsBlock: FC<Props> = ({
       urlToAll={urlToAll}
       items={items}
       renderItems={(item) => <AnimeCard item={item} />}
+      cursorHandle={cursorHandle}
     />
   ) : (
     <AnimeBlock<IAnime>

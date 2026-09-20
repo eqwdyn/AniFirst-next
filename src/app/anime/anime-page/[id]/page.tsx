@@ -6,6 +6,7 @@ import { ActionButtons } from "@/app/anime/anime-page/[id]/components/ActionButt
 import { ScreenShots } from "./components/ScreenShots";
 import { VideoPlayer } from "./components/VideoPlayer";
 import { Metadata } from "next";
+import { ClientLogic } from "./components/ClientLogic";
 
 export async function generateMetadata({
   params,
@@ -60,7 +61,7 @@ export default async function Anime({
           <VideoPlayer embedUrl={item.playerUrl} title={item.title} />
         </AnimePageLayout.Content>
       </AnimePageLayout.LayoutWrapper>
-      <div style={{ paddingTop: 32 }} />
+      <ClientLogic item={item} />
     </AnimePageLayout>
   );
 }

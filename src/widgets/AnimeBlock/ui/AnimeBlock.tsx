@@ -82,12 +82,23 @@ export const AnimeBlock = <T,>({
   return (
     <section aria-labelledby={titleId} className={cl.container}>
       <header className={cl.headerBlock}>
-        <div className={cl.titleContent}>
-          <h2 id={titleId} className={cl.title}>
-            {title}
-          </h2>
-          <p className={cl.description}>{description}</p>
-        </div>
+        {urlToAll ? (
+          <NotStyledLink href={urlToAll}>
+            <div className={cl.titleContent}>
+              <h2 id={titleId} className={cl.title}>
+                {title}
+              </h2>
+              <p className={cl.description}>{description}</p>
+            </div>
+          </NotStyledLink>
+        ) : (
+          <div className={cl.titleContent}>
+            <h2 id={titleId} className={cl.title}>
+              {title}
+            </h2>
+            <p className={cl.description}>{description}</p>
+          </div>
+        )}
         <div className={cl.navigationButtons}>
           <ArrowButton
             direction="left"

@@ -6,8 +6,9 @@ import { NotStyledLink } from "@shared/ui/NotStyledLink";
 interface Props {
   id: string;
   title: string;
+  origTitle?: string;
   previewUrl: string;
-  rating: number;
+  rating?: number;
   studio?: string;
 }
 

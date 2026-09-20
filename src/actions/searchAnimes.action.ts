@@ -12,7 +12,7 @@ export async function SearchAnimesAction(
     return null;
   }
 
-  const items = await AnimesService.searchAnimes(title);
+  const items = await AnimesService.searchAnimesShikimori(title);
   if (!items || !items.length) {
     return null;
   }

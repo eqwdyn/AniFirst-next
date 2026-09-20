@@ -30,9 +30,18 @@
   color: inherit;
   text-decoration: none;
 }
-.logoLink:hover {
-  .logo {
-    color: var(--color-tetriarty);
+@media (hover: hover) {
+  .logoLink:hover {
+    .logo {
+      color: var(--color-tetriarty);
+    }
+  }
+}
+@media (hover: none) {
+  .logoLink:active {
+    .logo {
+      color: var(--color-tetriarty);
+    }
   }
 }
 .logo {

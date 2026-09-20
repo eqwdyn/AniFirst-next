@@ -6,11 +6,11 @@ import { LocalStorageService } from "./LocalStorageService";
 class ClientAnimesServiceC {
   constructor(private readonly localStorageService: LocalStorageService) {}
 
-  getContinueToWatch(): IContinueToWatchAnime[] | null {
+  getContinueToWatch(): IAnime[] | null {
     return this.localStorageService.getItem(CONTINUE_TO_WATCH_KEY);
   }
 
-  setContinueToWatch(item: IContinueToWatchAnime): void {
+  setContinueToWatch(item: IAnime): void {
     const items = this.getContinueToWatch();
     this.localStorageService.setItem(CONTINUE_TO_WATCH_KEY, items, item);
   }

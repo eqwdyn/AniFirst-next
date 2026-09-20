@@ -3,19 +3,9 @@ import { ApiService } from "@/services/ApiService";
 import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
 import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
-import { IAnimeKodik } from "@entities/FromServer/AnimeKodik.ent";
-
-interface IDPApi {
-  getAnimeById: (id: string) => Promise<IAnimeKodik | undefined>;
-  getNewReleases: (limit: number) => Promise<IShikimoriAnime[] | undefined>;
-  getTrending: (limit: number) => Promise<IShikimoriAnime[] | undefined>;
-  getTrendingKodik: (limit: number) => Promise<IAnimeKodik[] | undefined>;
-  getHeroAnime: () => Promise<IAnime | undefined>;
-  searchAnimes: (title: string) => Promise<IAnimeSearch[]>;
-}
 
 class AnimesServiceC {
-  constructor(private readonly apiService: IDPApi) {}
+  constructor(private readonly apiService: ApiService) {}
 
   async getById(id: string): Promise<IAnimeFull | undefined> {
     try {
@@ -30,7 +20,7 @@ class AnimesServiceC {
     }
   }
 
-  async getNewReleases(): Promise<IAnime[] | undefined> {
+  async getNewReleases(page: number): Promise<IAnime[] | undefined> {
     try {
       const responsedAnimes = await this.apiService.getNewReleases(1);
 
@@ -78,6 +68,19 @@ class AnimesServiceC {
   async searchAnimes(title: string): Promise<IAnimeSearch[] | undefined> {
     try {
       const responsedAnimes = await this.apiService.searchAnimes(title);
+
+      return responsedAnimes;
+    } catch (e: any) {
+      console.error("Error while searching Animes: ", e.message);
+    }
+  }
+
+  async searchAnimesShikimori(
+    title: string,
+  ): Promise<IAnimeSearch[] | undefined> {
+    try {
+      const responsedAnimes =
+        await this.apiService.searchAnimesShikimori(title);
 
       return responsedAnimes;
     } catch (e: any) {

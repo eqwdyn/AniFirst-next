@@ -11,8 +11,8 @@ export default function Home() {
     <PageWrapper>
       <HeroBanner />
       <MainPageContentWrapper>
-        <TrendingAnimesRow />
         <ContinueWatchingRow />
+        <TrendingAnimesRow />
         <NewReleasesRow />
         <PopularGenresRow />
       </MainPageContentWrapper>

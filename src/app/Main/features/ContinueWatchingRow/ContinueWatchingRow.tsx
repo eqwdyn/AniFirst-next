@@ -1,18 +1,18 @@
 "use client";
 
-import { ContinueWatchingCard } from "@/app/Main/features/ContinueWatchingRow/components/ContinueWatchingCard/ui/ContinueWatchingCard";
-import { AnimeBlock } from "@/widgets/AnimeBlock";
 import { useEffect, useState } from "react";
-import { IContinueToWatchAnime } from "@entities/IContinueToWatchAnime.ent";
 import { Skeleton } from "./components/Skeleton";
 import { ClientAnimesService } from "@services/ClientAnimesService";
+import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
+import { IAnime } from "@entities/Anime.ent";
+import { getLang } from "@shared/utils/getLang";
 
 export const ContinueWatchingRow = () => {
-  const [animes, setAnimes] = useState<IContinueToWatchAnime[] | null>(null);
-  const lang = "ru";
+  const [animes, setAnimes] = useState<IAnime[] | null>(null);
+  const lang = getLang();
 
   useEffect(() => {
-    setAnimes(ClientAnimesService.getContinueToWatch() ?? []);
+    setAnimes(ClientAnimesService.getContinueToWatch()?.reverse() ?? []);
   }, []);
 
   if (!animes) {
@@ -24,25 +24,16 @@ export const ContinueWatchingRow = () => {
   }
 
   return (
-    <AnimeBlock
+    <AnimeCardsBlock
       title={lang === "ru" ? "Продолжить просмотр" : "Continue Watching"}
       titleId="continue-watching-animes"
       description={
         lang === "ru"
-          ? "Продолжить просмотр описание"
+          ? "Начать с того же момента"
           : "Pick up right where you left off"
       }
       urlToAll="/anime/continue"
       items={animes}
-      renderItems={(item) => (
-        <ContinueWatchingCard
-          item={item}
-          totalEpisodes={12}
-          lastViewedEpisode={4}
-          totalTime={24 * 60}
-          lastViewedTime={12 * 60}
-        />
-      )}
     />
   );
 };

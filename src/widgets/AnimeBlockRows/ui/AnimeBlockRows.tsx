@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useCursor } from "../../../shared/hooks/useCursor";
 import cl from "./AnimeBlockRows.module.css";
-import { ArrowButton } from "@/widgets/AnimeBlock/components/ArrowButton";
-import { Slider } from "@/widgets/Slider";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 
 interface Props<T> {
@@ -13,6 +12,7 @@ interface Props<T> {
   urlToAll?: string;
   items: T[];
   renderItems: (item: T) => React.ReactNode;
+  cursorHandle?: () => void;
 }
 
 export const AnimeBlockRows = <T,>({
@@ -22,17 +22,34 @@ export const AnimeBlockRows = <T,>({
   items,
   urlToAll,
   renderItems,
+  cursorHandle,
 }: Props<T>) => {
+  const initHandle = () => {};
+  const ref = useRef(null);
+  useCursor({ ref, handle: cursorHandle ?? initHandle });
   return (
     <section aria-labelledby={titleId} className={cl.container}>
-      <header className={cl.headerBlock}>
-        <div className={cl.titleContent}>
-          <h2 id={titleId} className={cl.title}>
-            {title}
-          </h2>
-          <p className={cl.description}>{description}</p>
-        </div>
-      </header>
+      {urlToAll ? (
+        <NotStyledLink href={urlToAll}>
+          <header className={cl.headerBlock}>
+            <div className={cl.titleContent}>
+              <h2 id={titleId} className={cl.title}>
+                {title}
+              </h2>
+              <p className={cl.description}>{description}</p>
+            </div>
+          </header>
+        </NotStyledLink>
+      ) : (
+        <header className={cl.headerBlock}>
+          <div className={cl.titleContent}>
+            <h2 id={titleId} className={cl.title}>
+              {title}
+            </h2>
+            <p className={cl.description}>{description}</p>
+          </div>
+        </header>
+      )}
 
       <div className={cl.listWrapper}>
         <ul className={cl.list}>
@@ -41,6 +58,7 @@ export const AnimeBlockRows = <T,>({
               {renderItems(item)}
             </li>
           ))}
+          <li ref={ref} />
         </ul>
       </div>
     </section>

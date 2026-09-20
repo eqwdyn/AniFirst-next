@@ -12,7 +12,8 @@ const getTrendingKodikPath = "/trending-kodik";
 const getHeroAnimePath = "/hero-anime";
 const getNewReleasesPath = "/new-releases";
 const getAnimeByIdPath = "/anime";
-const searchAnimesPath = "/search";
+const searchAnimesKodikPath = "/search-kodik";
+const searchAnimesShikimoriPath = "/search-kodik";
 
 export class ApiService {
   async getAnimeById(id: number | string): Promise<IAnimeKodik | undefined> {
@@ -49,7 +50,16 @@ export class ApiService {
     return animes;
   }
   async searchAnimes(title: string): Promise<IAnimeSearch[]> {
-    const { data: animes } = await api.get<any>(`${searchAnimesPath}/${title}`);
+    const { data: animes } = await api.get<any>(
+      `${searchAnimesKodikPath}/${title}`,
+    );
+
+    return animes;
+  }
+  async searchAnimesShikimori(title: string): Promise<IAnimeSearch[]> {
+    const { data: animes } = await api.get<any>(
+      `${searchAnimesShikimoriPath}/${title}`,
+    );
 
     return animes;
   }
