@@ -6,10 +6,15 @@ import { IAnime } from "@entities/Anime.ent";
 import cl from "./MyListButton.module.css";
 import Image from "next/image";
 import { Show } from "@shared/ui/Show";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ClientAnimesService } from "@services/ClientAnimesService";
 
-export const MyListButton = ({ item }: { item: IAnime }) => {
+interface Props {
+  item: IAnime;
+  adaptiveText?: boolean;
+}
+
+export const MyListButton: FC<Props> = ({ item, adaptiveText }) => {
   const [isItemInList, setIsItemInList] = useState<boolean | null>(null);
   const lang = getLang();
 
@@ -48,8 +53,10 @@ export const MyListButton = ({ item }: { item: IAnime }) => {
             loading="lazy"
             alt=""
           />
-          <span className={cl.text}>
-            {lang === "ru" ? "Добавить в избранного" : "Add to List"}
+          <span
+            className={adaptiveText ? `${cl.adaptiveText} ${cl.text}` : cl.text}
+          >
+            {lang === "ru" ? "Добавить в избранное" : "Add to List"}
           </span>
         </div>
       </Show>
@@ -57,7 +64,9 @@ export const MyListButton = ({ item }: { item: IAnime }) => {
       <Show when={!!isItemInList}>
         <div className={cl.content}>
           <div className={cl.minus} />
-          <span className={cl.text}>
+          <span
+            className={adaptiveText ? `${cl.adaptiveText} ${cl.text}` : cl.text}
+          >
             {lang === "ru" ? "Удалить из избранного" : "Delete from List"}
           </span>
         </div>

@@ -8,11 +8,12 @@ import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 interface Props<T> {
   titleId: string;
   title: string;
-  description: string;
+  description?: string;
   urlToAll?: string;
   items: T[];
   renderItems: (item: T) => React.ReactNode;
   cursorHandle?: () => void;
+  titleGap?: number;
 }
 
 export const AnimeBlockRows = <T,>({
@@ -23,6 +24,7 @@ export const AnimeBlockRows = <T,>({
   urlToAll,
   renderItems,
   cursorHandle,
+  titleGap,
 }: Props<T>) => {
   const initHandle = () => {};
   const ref = useRef(null);
@@ -31,22 +33,32 @@ export const AnimeBlockRows = <T,>({
     <section aria-labelledby={titleId} className={cl.container}>
       {urlToAll ? (
         <NotStyledLink href={urlToAll}>
-          <header className={cl.headerBlock}>
+          <header
+            className={cl.headerBlock}
+            style={{ marginBottom: titleGap ?? undefined }}
+          >
             <div className={cl.titleContent}>
               <h2 id={titleId} className={cl.title}>
                 {title}
               </h2>
-              <p className={cl.description}>{description}</p>
+              {description ? (
+                <p className={cl.description}>{description}</p>
+              ) : null}
             </div>
           </header>
         </NotStyledLink>
       ) : (
-        <header className={cl.headerBlock}>
+        <header
+          className={cl.headerBlock}
+          style={{ marginBottom: titleGap ?? undefined }}
+        >
           <div className={cl.titleContent}>
             <h2 id={titleId} className={cl.title}>
               {title}
             </h2>
-            <p className={cl.description}>{description}</p>
+            {description ? (
+              <p className={cl.description}>{description}</p>
+            ) : null}
           </div>
         </header>
       )}

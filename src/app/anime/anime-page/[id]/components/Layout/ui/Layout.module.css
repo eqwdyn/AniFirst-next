@@ -45,21 +45,51 @@
   display: flex;
 
   gap: 48px;
-  /* padding-top: 200px; */
-  padding-top: 150px;
+  padding-top: 120px;
   padding-bottom: 32px;
 }
 .content {
   display: flex;
   flex-direction: column;
   row-gap: 32px;
+  min-width: 0;
 }
 .aside {
 }
+.buttonContainer {
+  max-width: 355px;
+}
+.buttonContainer > button {
+  width: 100%;
+}
 
-@media (max-width: 768px) {
+/* @media (max-width: 950px) {
   .layoutWrapper {
     flex-direction: column;
     align-items: center;
+  }
+} */
+
+@media (max-width: 950px) {
+  .layoutWrapper {
+    flex-direction: column;
+    align-items: stretch; /* вместо center */
+  }
+
+  .aside {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .layoutWrapper {
+    padding-top: 100px;
   }
 }

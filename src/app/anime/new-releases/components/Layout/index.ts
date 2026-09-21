@@ -1,1 +1,1 @@
-export { AnimePageLayout } from "./ui/Layout";
+export { PageLayout } from "./ui/Layout";

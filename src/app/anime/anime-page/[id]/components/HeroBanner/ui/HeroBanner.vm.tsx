@@ -3,6 +3,7 @@ import cl from "./HeroBanner.module.css";
 import { TagsBlock } from "@/widgets/TagsBlock";
 import { Metrics } from "@/app/anime/anime-page/[id]/components/HeroBanner/components/Metrics";
 import { Show } from "@shared/ui/Show";
+import { DescriptionToggle } from "../components/DescriptionToggle";
 
 interface Props {
   tags?: string[];
@@ -41,7 +42,8 @@ export const HeroBannerVM: FC<Props> = ({
         </Show>
       </div>
 
-      <p className={cl.description}>{description}</p>
+      {/* <p className={cl.description}>{description}</p> */}
+      <DescriptionToggle description={description} />
     </div>
   );
 };

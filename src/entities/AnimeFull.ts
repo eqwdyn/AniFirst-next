@@ -1,3 +1,5 @@
+import { IShikimoriRelatedAnime } from "./FromServer/ShikimoriRelatedAnime.ent";
+
 export interface IAnimeFull {
   kodik_id?: string;
   shikimori_id: string;
@@ -11,4 +13,5 @@ export interface IAnimeFull {
   posterUrl: string;
   playerUrl: string;
   screenshots: string[];
+  related: IShikimoriRelatedAnime[];
 }

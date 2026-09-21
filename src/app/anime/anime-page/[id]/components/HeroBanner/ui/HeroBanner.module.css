@@ -19,7 +19,7 @@
   color: var(--color-textSecondary);
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   .titleBlock {
     flex-direction: column;
     row-gap: 10px;

@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 8px;
+  /* background-color: var(--color-secondary); */
+  /* padding: 5px; */
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.125rem;
+  font-family: var(--font-geist);
+  color: var(--color-textPrimary);
+}
+
+.arrow {
+  transition: transform 0.25s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.description {
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+  color: var(--color-textSecondary);
+  line-height: 1.6;
+}
+
+.descriptionOpen {
+  max-height: 500px;
+  opacity: 1;
+}

@@ -1,5 +1,10 @@
-import { PageWrapper } from "@/shared/ui/PageWrapper";
+import { PageLayout } from "./components/Layout/ui/Layout";
+import { SearchClient } from "./components/SearchClient";
 
 export default function Search() {
-  return <PageWrapper>Search Page</PageWrapper>;
+  return (
+    <PageLayout>
+      <SearchClient />
+    </PageLayout>
+  );
 }

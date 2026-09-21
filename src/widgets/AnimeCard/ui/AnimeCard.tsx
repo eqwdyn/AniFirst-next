@@ -4,6 +4,7 @@ import { Show } from "@/shared/ui/Show";
 import Image from "next/image";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 import { IAnime } from "@entities/Anime.ent";
+import { cutStringToLength } from "../../../shared/utils/cutStringToLength";
 
 // export interface IAnimeCard {
 //   shikimori_id: number;
@@ -14,30 +15,28 @@ import { IAnime } from "@entities/Anime.ent";
 interface Props {
   item: IAnime;
   footer?: React.ReactNode;
+  width?: number;
 }
 
-export const AnimeCard: FC<Props> = ({ item, footer }) => {
+export const AnimeCard: FC<Props> = ({ item, footer, width }) => {
   return (
     <NotStyledLink
       href={`/anime/anime-page/${item.shikimori_id}`}
       className={cl.wrapper}
     >
-      <article className={cl.container}>
+      <article className={cl.container} style={{ width: width ?? undefined }}>
         <div className={cl.content}>
           <Image
             src={item.posterUrl}
             alt={item.title}
             fill
             sizes="400px"
-            loading="eager"
+            loading="lazy"
             className={cl.bgImage}
           />
 
           <div className={cl.media}>
-            <h3 className={cl.title}>{item.title}</h3>
-            {/* <p className={cl.episodes}>
-              {item.lastEpisode} / {item.totalEpisodes} Episodes
-            </p> */}
+            <h3 className={cl.title}>{cutStringToLength(item.title, 23)}</h3>
           </div>
         </div>
       </article>

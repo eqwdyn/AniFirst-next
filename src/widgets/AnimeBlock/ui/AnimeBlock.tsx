@@ -9,18 +9,22 @@ import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 interface Props<T> {
   titleId: string;
   title: string;
-  description: string;
+  description?: string;
   urlToAll?: string;
   items: T[];
   renderItems: (item: T) => React.ReactNode;
+  titleGap?: number;
 }
 
-export const AnimeBlock = <T,>({
+export const AnimeBlock = <
+  T extends { shikimori_id?: string; kodik_id?: string },
+>({
   titleId,
   title,
   description,
   items,
   urlToAll,
+  titleGap,
   renderItems,
 }: Props<T>) => {
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -81,14 +85,19 @@ export const AnimeBlock = <T,>({
 
   return (
     <section aria-labelledby={titleId} className={cl.container}>
-      <header className={cl.headerBlock}>
+      <header
+        className={cl.headerBlock}
+        style={{ marginBottom: titleGap ?? undefined }}
+      >
         {urlToAll ? (
           <NotStyledLink href={urlToAll}>
             <div className={cl.titleContent}>
               <h2 id={titleId} className={cl.title}>
                 {title}
               </h2>
-              <p className={cl.description}>{description}</p>
+              {description ? (
+                <p className={cl.description}>{description}</p>
+              ) : null}
             </div>
           </NotStyledLink>
         ) : (
@@ -96,7 +105,9 @@ export const AnimeBlock = <T,>({
             <h2 id={titleId} className={cl.title}>
               {title}
             </h2>
-            <p className={cl.description}>{description}</p>
+            {description ? (
+              <p className={cl.description}>{description}</p>
+            ) : null}
           </div>
         )}
         <div className={cl.navigationButtons}>

@@ -1,18 +1,19 @@
 .metrics {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
   column-gap: 40px;
-  align-items: center;
-  /* background-color: var(--color-backgroundOpacity); */
-  padding: 10px 15px;
-  border-radius: 12px;
+  row-gap: 10px;
+  flex-shrink: 0;
 }
+
 .metric {
   display: flex;
   align-items: center;
   column-gap: 6px;
   position: relative;
-  width: max-content;
 }
+
 .metric::after {
   content: "";
   position: absolute;
@@ -22,6 +23,9 @@
   width: 1px;
   background: var(--color-border);
 }
+
+/* Нет разделителя после последнего в строке (4 колонки) */
+.metric:nth-child(4n)::after,
 .metric:last-child::after {
   display: none;
 }
@@ -32,15 +36,29 @@
 .statusText {
   color: var(--color-textSecondary);
 }
-
 .metricEpisodes {
   color: var(--color-textSecondary);
 }
-
 .metricStudio {
   color: var(--color-textSecondary);
 }
 .metricStudioName {
   color: var(--color-textPrimary);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .metrics {
+    grid-template-columns: repeat(2, auto);
+    column-gap: 20px;
+  }
+
+  .metric::after {
+    right: -10px;
+  }
+
+  /* Нет разделителя после последнего в строке (2 колонки) */
+  .metric:nth-child(2n)::after {
+    display: none;
+  }
 }

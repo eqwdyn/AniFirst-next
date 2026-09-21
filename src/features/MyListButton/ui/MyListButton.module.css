@@ -9,6 +9,9 @@
     .text {
       color: var(--color-tetriarty);
     }
+    /* .adaptiveText {
+      color: var(--color-tetriarty);
+    } */
 
     .minus::after {
       background-color: var(--color-tetriarty);
@@ -19,6 +22,9 @@
 .text {
   transition: color 0.2s ease-in;
 }
+/* .adaptiveText {
+  transition: color 0.2s ease-in;
+} */
 
 .skeleton {
   width: 200px;
@@ -47,9 +53,10 @@
 }
 
 @media (max-width: 475px) {
-  .text {
+  .adaptiveText {
     display: none;
   }
+
   .skeleton {
     width: 13px;
     height: 13px;

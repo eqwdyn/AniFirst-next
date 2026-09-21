@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Show } from "@shared/ui/Show";
 import { MyListButton } from "@/features/MyListButton";
 import { getLang } from "@shared/utils/getLang";
+import { cutStringToLength } from "../../../../shared/utils/cutStringToLength";
 
 interface Props {
   item?: IAnime;
@@ -39,7 +40,11 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
         </Show>
         <div className={cl.titleBlock}>
           <h2 className={cl.title}>{item?.title}</h2>
-          <p className={cl.description}>{item?.description}</p>
+          {item?.description ? (
+            <p className={cl.description}>
+              {cutStringToLength(item.description, 160)}
+            </p>
+          ) : null}
         </div>
         <div className={cl.buttons}>
           <Link href={`/anime/anime-page/${item?.shikimori_id}`}>
@@ -58,7 +63,7 @@ export const HeroBannerVM: FC<Props> = ({ item }) => {
               </div>
             </PrimaryButton>
           </Link>
-          {item ? <MyListButton item={item} /> : null}
+          {item ? <MyListButton item={item} adaptiveText={true} /> : null}
         </div>
       </div>
     </section>

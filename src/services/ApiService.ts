@@ -3,6 +3,7 @@ import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import { IAnime } from "@entities/Anime.ent";
 import { IAnimeKodik } from "@entities/FromServer/AnimeKodik.ent";
+import { IAnimeFull } from "@entities/AnimeFull";
 
 const getTrendingPath = "/trending";
 const getTrendingKodikPath = "/trending-kodik";
@@ -14,8 +15,8 @@ const searchAnimesShikimoriPath = "/search-kodik";
 
 export class ApiService {
   constructor(private readonly api: AxiosInstance) {}
-  async getAnimeById(id: number | string): Promise<IAnimeKodik | undefined> {
-    const { data: animes } = await this.api.get<IAnimeKodik>(
+  async getAnimeById(id: number | string): Promise<IAnimeFull | undefined> {
+    const { data: animes } = await this.api.get<IAnimeFull>(
       `${getAnimeByIdPath}/${id}`,
     );
 

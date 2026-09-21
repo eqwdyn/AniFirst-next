@@ -36,9 +36,13 @@ const Content = ({ children }: { children: React.ReactNode }) => {
 const Aside = ({ children }: { children: React.ReactNode }) => {
   return <aside className={cl.aside}>{children}</aside>;
 };
+const ButtonContainer = ({ children }: { children: React.ReactNode }) => {
+  return <div className={cl.buttonContainer}>{children}</div>;
+};
 
 export const AnimePageLayout = Object.assign(AnimePageLayoutRoot, {
   LayoutWrapper,
+  ButtonContainer,
   Content,
   BgImage,
   Aside,

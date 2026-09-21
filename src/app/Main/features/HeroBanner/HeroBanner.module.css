@@ -62,10 +62,6 @@
   }
 }
 @media (max-width: 768px) {
-  .hero {
-    height: 400px;
-  }
-
   .content {
     row-gap: 16px;
   }

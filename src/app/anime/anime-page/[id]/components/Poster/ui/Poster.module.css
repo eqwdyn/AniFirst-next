@@ -22,12 +22,12 @@
     width: 230px;
   }
 }
-@media (max-width: 850px) {
+/* @media (max-width: 850px) {
   .container {
     width: 185px;
   }
-}
-@media (max-width: 768px) {
+} */
+@media (max-width: 950px) {
   .container {
     width: 300px;
     aspect-ratio: 0.85;
