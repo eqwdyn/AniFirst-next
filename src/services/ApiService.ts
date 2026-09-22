@@ -73,9 +73,19 @@ export class ApiService {
 
     return animes;
   }
-  async searchAnimesShikimori(title: string): Promise<IAnimeSearch[]> {
+  async searchAnimesShikimori(
+    title: string,
+    statusFilter?: string,
+    typeFilter?: string,
+  ): Promise<IAnimeSearch[]> {
     const { data: animes } = await this.api.get<any>(
       `${searchAnimesShikimoriPath}/${title}`,
+      {
+        params: {
+          status: statusFilter ?? undefined,
+          type: typeFilter ?? undefined,
+        },
+      },
     );
 
     return animes;

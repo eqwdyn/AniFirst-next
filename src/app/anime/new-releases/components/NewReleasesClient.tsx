@@ -4,9 +4,9 @@ import { useState, useCallback } from "react";
 import { IAnime } from "@entities/Anime.ent";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { Show } from "@shared/ui/Show";
-import { BackFall } from "./BackFall";
 import { Skeleton } from "./Skeleton";
 import { getNewReleasesAction } from "@app/actions/getNewReleasesCursor.action";
+import { FallBack } from "./FallBack";
 
 interface Props {
   initialItems: IAnime[] | undefined;
@@ -51,7 +51,7 @@ export function NewReleasesClient({ initialItems, lang }: Props) {
         />
       </Show>
       <Show when={!items.length}>
-        <BackFall />
+        <FallBack />
       </Show>
       {loading && <Skeleton />}
     </>

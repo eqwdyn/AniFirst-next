@@ -7,6 +7,8 @@ type ActionsReturnType = IAnimeSearch[] | null;
 
 export async function SearchAnimesAction(
   title: string,
+  statusFilter?: string,
+  typeFilter?: string,
 ): Promise<ActionsReturnType> {
   if (!title.trim()) {
     return null;

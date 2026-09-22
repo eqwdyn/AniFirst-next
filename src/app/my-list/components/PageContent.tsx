@@ -5,9 +5,9 @@ import { IAnime } from "@entities/Anime.ent";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { Show } from "@shared/ui/Show";
 import { getLang } from "@shared/utils/getLang";
-import { BackFall } from "./BackFall";
 import { Skeleton } from "./Skeleton";
 import { ClientAnimesService } from "@services/ClientAnimesService";
+import { FallBack } from "./FallBack";
 
 export function FavoritePageContent() {
   const [items, setItems] = useState<IAnime[] | null>(null);
@@ -38,7 +38,7 @@ export function FavoritePageContent() {
         />
       </Show>
       <Show when={!items.length}>
-        <BackFall />
+        <FallBack />
       </Show>
     </>
   ) : (

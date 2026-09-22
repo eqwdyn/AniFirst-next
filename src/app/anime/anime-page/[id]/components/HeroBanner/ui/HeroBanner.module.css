@@ -26,4 +26,12 @@
     justify-content: start;
     align-items: start;
   }
+  .title {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 625px) {
+  .title {
+    font-size: 1.8rem;
+  }
 }

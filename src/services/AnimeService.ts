@@ -82,10 +82,15 @@ export class AnimesServiceC {
 
   async searchAnimesShikimori(
     title: string,
+    statusFilter?: string,
+    typeFilter?: string,
   ): Promise<IAnimeSearch[] | undefined> {
     try {
-      const responsedAnimes =
-        await this.apiService.searchAnimesShikimori(title);
+      const responsedAnimes = await this.apiService.searchAnimesShikimori(
+        title,
+        statusFilter,
+        typeFilter,
+      );
 
       return responsedAnimes;
     } catch (e: any) {
