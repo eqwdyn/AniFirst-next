@@ -7,12 +7,17 @@ import { Dropbox } from "@shared/ui/Dropbox";
 import { SearchPageLayout } from "./Layout/ui/Layout";
 import { ResultsHeader } from "./ResultsHeader";
 import { Show } from "@shared/ui/Show";
-import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import { FallBack } from "./FallBack";
+import { SearchAnimesAction } from "@app/actions/searchAnimes.action";
+import { AnimesList } from "./AnimesList/ui/AnimesList";
+import { AnimesService } from "@services/AnimeService";
+import { IAnime } from "@entities/Anime.ent";
 
-interface Props {}
+interface Props {
+  initItems: IAnime[] | undefined;
+}
 
-export const SearchClient: FC<Props> = ({}) => {
+export const SearchClient: FC<Props> = ({ initItems }) => {
   const [query, setQuery] = useState<string>("");
   const filters = {
     status: ["Онгоинг", "Завершенно", "Анонсированно"],
@@ -23,26 +28,64 @@ export const SearchClient: FC<Props> = ({}) => {
     null,
   );
   const [activeTypeFilter, setActiveTypeFilter] = useState<string | null>(null);
-
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [items, setItems] = useState<IAnimeSearch[]>([]);
+  const [items, setItems] = useState<IAnime[]>(initItems ?? []);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
-    if (activeStatusFilter && activeTypeFilter) {
-      setActiveFilters([activeStatusFilter, activeTypeFilter]);
+    if (!query.trim()) {
+      setItems(initItems ?? []);
+      setHasSearched(false);
       return;
     }
 
-    if (activeStatusFilter) {
-      setActiveFilters([activeStatusFilter]);
-      return;
-    }
+    const timer = setTimeout(async () => {
+      try {
+        // ИСПРАВЛЕНО: "Завершенно" (двойная н) — как в dropdown
+        const statusMap: Record<string, "ongoing" | "released" | "anons"> = {
+          Онгоинг: "ongoing",
+          Завершенно: "released",
+          Анонсированно: "anons",
+        };
 
-    if (activeTypeFilter) {
-      setActiveFilters([activeTypeFilter]);
-      return;
-    }
-  }, [activeTypeFilter, activeStatusFilter]);
+        const typeMap: Record<string, "tv" | "movie" | "ova" | "ona"> = {
+          Аниме: "tv",
+          Фильм: "movie",
+          OVA: "ova",
+          ONA: "ona",
+        };
+
+        const status = activeStatusFilter
+          ? statusMap[activeStatusFilter]
+          : undefined;
+        const type = activeTypeFilter ? typeMap[activeTypeFilter] : undefined;
+
+        const data = await SearchAnimesAction(query, status, type);
+
+        setItems(data ?? []);
+        setHasSearched(true);
+      } catch (e) {
+        console.error("Search failed", e);
+        setItems([]);
+        setHasSearched(true);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [query, activeTypeFilter, activeStatusFilter]);
+
+  //   const activeFilters = [
+  //     activeStatusFilter
+  //       ? {
+  //           label: activeStatusFilter,
+  //           onRemove: () => setActiveStatusFilter(null),
+  //         }
+  //       : null,
+  //     activeTypeFilter
+  //       ? { label: activeTypeFilter, onRemove: () => setActiveTypeFilter(null) }
+  //       : null,
+  //   ].filter(
+  //     (item): item is { label: string; onRemove: () => void } => item !== null,
+  //   );
 
   return (
     <SearchPageLayout.Content>
@@ -51,7 +94,7 @@ export const SearchClient: FC<Props> = ({}) => {
         setText={setQuery}
         placeholder="Search anime, movies, creators..."
       />
-      <SearchPageLayout.DropBoxes>
+      {/* <SearchPageLayout.DropBoxes>
         <Dropbox
           items={filters.status}
           onSelect={setActiveStatusFilter}
@@ -64,14 +107,21 @@ export const SearchClient: FC<Props> = ({}) => {
         />
       </SearchPageLayout.DropBoxes>
 
-      <FilterList
-        activeFilters={activeFilters}
-        setActiveFilters={setActiveFilters}
-      />
+      <FilterList activeFilters={activeFilters} /> */}
 
       <ResultsHeader itemsLength={items.length} />
-      <Show when={items.length === 0}>
-        <FallBack resetFiltersHandle={() => setActiveFilters([])} />
+
+      <Show when={hasSearched && items.length === 0}>
+        <FallBack
+          resetFiltersHandle={() => {
+            setActiveStatusFilter(null);
+            setActiveTypeFilter(null);
+            setQuery("");
+          }}
+        />
+      </Show>
+      <Show when={items.length > 0}>
+        <AnimesList items={items} />
       </Show>
     </SearchPageLayout.Content>
   );

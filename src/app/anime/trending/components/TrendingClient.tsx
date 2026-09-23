@@ -59,7 +59,9 @@ export function TrendingClient({ initialItems, lang }: Props) {
       <Show when={!items.length}>
         <BackFall />
       </Show>
-      {loading && <Skeleton />}
+      <Show when={loading}>
+        <Skeleton />
+      </Show>
     </>
   );
 }

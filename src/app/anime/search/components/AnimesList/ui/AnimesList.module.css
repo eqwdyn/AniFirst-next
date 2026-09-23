@@ -1,0 +1,12 @@
+.listWrapper {
+  display: flex;
+  justify-content: center;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.li {
+  padding: 10px;
+  padding-bottom: 15px;
+}

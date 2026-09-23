@@ -70,7 +70,11 @@ export class AnimesServiceC {
     }
   }
 
-  async searchAnimes(title: string): Promise<IAnimeSearch[] | undefined> {
+  async searchAnimes(
+    title: string,
+    ststatusFilter?: string,
+    typeFilter?: string,
+  ): Promise<IAnimeSearch[] | undefined> {
     try {
       const responsedAnimes = await this.apiService.searchAnimes(title);
 
@@ -82,8 +86,20 @@ export class AnimesServiceC {
 
   async searchAnimesShikimori(
     title: string,
-    statusFilter?: string,
-    typeFilter?: string,
+    statusFilter?: "ongoing" | "anons" | "released" | "latest",
+    typeFilter?:
+      | "tv"
+      | "tv_13"
+      | "tv_24"
+      | "tv_48"
+      | "movie"
+      | "ova"
+      | "ona"
+      | "special"
+      | "tv_special"
+      | "music"
+      | "pv"
+      | "cm",
   ): Promise<IAnimeSearch[] | undefined> {
     try {
       const responsedAnimes = await this.apiService.searchAnimesShikimori(

@@ -11,7 +11,7 @@ const getHeroAnimePath = "/hero-anime";
 const getNewReleasesPath = "/new-releases";
 const getAnimeByIdPath = "/anime";
 const searchAnimesKodikPath = "/search-kodik";
-const searchAnimesShikimoriPath = "/search-kodik";
+const searchAnimesShikimoriPath = "/search-shikimori";
 
 export class ApiService {
   constructor(private readonly api: AxiosInstance) {}
@@ -66,17 +66,39 @@ export class ApiService {
 
     return animes;
   }
-  async searchAnimes(title: string): Promise<IAnimeSearch[]> {
+  async searchAnimes(
+    title: string,
+    statusFilter?: string,
+    typeFilter?: string,
+  ): Promise<IAnimeSearch[]> {
     const { data: animes } = await this.api.get<any>(
       `${searchAnimesKodikPath}/${title}`,
+      {
+        params: {
+          status: statusFilter ?? undefined,
+          type: typeFilter ?? undefined,
+        },
+      },
     );
 
     return animes;
   }
   async searchAnimesShikimori(
     title: string,
-    statusFilter?: string,
-    typeFilter?: string,
+    statusFilter?: "ongoing" | "anons" | "released" | "latest",
+    typeFilter?:
+      | "tv"
+      | "tv_13"
+      | "tv_24"
+      | "tv_48"
+      | "movie"
+      | "ova"
+      | "ona"
+      | "special"
+      | "tv_special"
+      | "music"
+      | "pv"
+      | "cm",
   ): Promise<IAnimeSearch[]> {
     const { data: animes } = await this.api.get<any>(
       `${searchAnimesShikimoriPath}/${title}`,

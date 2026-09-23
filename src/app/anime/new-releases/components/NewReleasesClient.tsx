@@ -53,7 +53,9 @@ export function NewReleasesClient({ initialItems, lang }: Props) {
       <Show when={!items.length}>
         <FallBack />
       </Show>
-      {loading && <Skeleton />}
+      <Show when={loading}>
+        <Skeleton />
+      </Show>
     </>
   );
 }
