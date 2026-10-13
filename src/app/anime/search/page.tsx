@@ -1,5 +1,5 @@
 import { AnimesService } from "../../../services/AnimeService";
-import { SearchPageLayout } from "./components/Layout/ui/Layout";
+import { SearchPageLayout } from "./components/Layout/";
 import { SearchClient } from "./components/SearchClient";
 
 export default async function Search() {

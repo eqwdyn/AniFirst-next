@@ -66,6 +66,12 @@
 .buttonContainer > button {
   width: 100%;
 }
+.fallbackContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
 @media (max-width: 950px) {
   .layoutWrapper {

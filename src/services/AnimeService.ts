@@ -1,9 +1,9 @@
 import { IAnime } from "@/entities/Anime.ent";
 import { ApiService } from "@/services/ApiService";
-import { IShikimoriAnime } from "@entities/FromServer/ShikimoriAnime.ent";
 import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import axios from "axios";
+import { IAnimeGenre } from "../entities/AnimeGenre.ent";
 
 const api = axios.create({
   baseURL: process.env.SERVER_URL,
@@ -27,9 +27,8 @@ export class AnimesServiceC {
 
   async getNewReleases(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.getNewReleases(1, page);
+      const animes = await this.apiService.getNewReleases(1, page);
 
-      const animes = this.parseAnimes(responsedAnimes);
       return animes;
     } catch (e) {
       console.error("Error while get Anime by Id: ", e);
@@ -38,9 +37,8 @@ export class AnimesServiceC {
 
   async getTrending(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.getTrending(1, page);
+      const animes = await this.apiService.getTrending(1, page);
 
-      const animes = this.parseAnimes(responsedAnimes);
       return animes;
     } catch (e: any) {
       console.error("Error while get Anime Trends: ", e.message);
@@ -114,18 +112,14 @@ export class AnimesServiceC {
     }
   }
 
-  private parseAnimes(animes: IShikimoriAnime[] | undefined): IAnime[] {
-    if (!animes) return [];
+  async getGenres(): Promise<Record<string, string> | undefined> {
+    try {
+      const genres = await this.apiService.getGenres();
 
-    const parsedAnimes: IAnime[] = [];
-    for (const anime of animes) {
-      const parsedAnime: IAnime = {
-        ...anime,
-        posterUrl: anime.poster,
-      };
-      parsedAnimes.push(parsedAnime);
+      return genres;
+    } catch (e) {
+      console.error("Error while getting Genres: ", e);
     }
-    return parsedAnimes;
   }
 }
 

@@ -5,6 +5,7 @@ import cl from "./AnimeBlock.module.css";
 import { ArrowButton } from "@/widgets/AnimeBlock/components/ArrowButton";
 import { Slider } from "@/widgets/Slider";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
+import { ContentSection } from "@shared/ui/ContentSection";
 
 interface Props<T> {
   titleId: string;
@@ -74,7 +75,6 @@ export const AnimeBlock = <
     const element = listRef.current;
     if (element) {
       element.addEventListener("scroll", updateFlags, { passive: true });
-      // Сразу обновляем флаги, чтобы не было рассинхрона при первом рендере
       updateFlags();
     }
 
@@ -84,33 +84,14 @@ export const AnimeBlock = <
   }, [items]);
 
   return (
-    <section aria-labelledby={titleId} className={cl.container}>
-      <header
-        className={cl.headerBlock}
-        style={{ marginBottom: titleGap ?? undefined }}
-      >
-        {urlToAll ? (
-          <NotStyledLink href={urlToAll}>
-            <div className={cl.titleContent}>
-              <h2 id={titleId} className={cl.title}>
-                {title}
-              </h2>
-              {description ? (
-                <p className={cl.description}>{description}</p>
-              ) : null}
-            </div>
-          </NotStyledLink>
-        ) : (
-          <div className={cl.titleContent}>
-            <h2 id={titleId} className={cl.title}>
-              {title}
-            </h2>
-            {description ? (
-              <p className={cl.description}>{description}</p>
-            ) : null}
-          </div>
-        )}
-        <div className={cl.navigationButtons}>
+    <ContentSection
+      title={title}
+      titleId={titleId}
+      description={description}
+      urlToAll={urlToAll}
+      titleGap={titleGap}
+      navigationBlock={
+        <>
           <ArrowButton
             direction="left"
             onClick={handleScrollLeft}
@@ -128,10 +109,10 @@ export const AnimeBlock = <
               See All
             </NotStyledLink>
           ) : null}
-        </div>
-      </header>
-
+        </>
+      }
+    >
       <Slider<T> items={items} listRef={listRef} renderItem={renderItems} />
-    </section>
+    </ContentSection>
   );
 };

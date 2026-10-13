@@ -6,7 +6,7 @@ import { PageWrapper } from "@/shared/ui/PageWrapper";
 const AnimePageLayoutRoot: FC<PropsWithChildren> = ({ children }) => {
   return (
     <PageWrapper>
-      <div className={cl.pageWrapper}>{children}</div>
+      <LayoutWrapper>{children}</LayoutWrapper>
     </PageWrapper>
   );
 };
@@ -43,6 +43,9 @@ const ButtonContainer = ({ children }: { children: React.ReactNode }) => {
     </div>
   );
 };
+const FallBack = ({ children }: { children: React.ReactNode }) => {
+  return <div className={cl.fallbackContainer}>{children}</div>;
+};
 
 export const AnimePageLayout = Object.assign(AnimePageLayoutRoot, {
   LayoutWrapper,
@@ -50,4 +53,5 @@ export const AnimePageLayout = Object.assign(AnimePageLayoutRoot, {
   Content,
   BgImage,
   Aside,
+  FallBack,
 });

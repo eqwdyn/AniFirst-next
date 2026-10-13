@@ -34,15 +34,16 @@ export async function SearchAnimesAction(
   if (!items || !items.length) {
     return null;
   }
+  console.log(JSON.stringify(items, null, 2));
 
-  const filtered = items.filter(
-    (item) =>
-      !!item.shikimori_id &&
-      !!item.posterUrl &&
-      !!item.title &&
-      !!item.status &&
-      !!item.studio,
-  );
+  //   const filtered = items.filter(
+  //     (item) =>
+  //       !!item.shikimori_id &&
+  //       !!item.posterUrl &&
+  //       !!item.title &&
+  //       !!item.status &&
+  //       !!item.studio,
+  //   );
 
   //    {
   //     "shikimori_id": "16870",
@@ -54,5 +55,5 @@ export async function SearchAnimesAction(
   //     "kind": null
   //   },
 
-  return filtered;
+  return items;
 }

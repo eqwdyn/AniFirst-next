@@ -1,1 +1,1 @@
-export { PageLayout } from "./ui/Layout";
+export { SearchPageLayout } from "./ui/Layout";

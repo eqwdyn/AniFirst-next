@@ -9,6 +9,7 @@ import { ClientLogic } from "./components/ClientLogic";
 import { MyListButton } from "@features/MyListButton";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { getLang } from "@shared/utils/getLang";
+import { FallBack } from "./components/FallBack";
 
 export async function generateMetadata({
   params,
@@ -33,35 +34,41 @@ export default async function Anime({
   const lang = getLang();
 
   if (!item) {
-    return <p>Not item</p>;
+    return (
+      <AnimePageLayout>
+        <AnimePageLayout.FallBack>
+          <FallBack />
+        </AnimePageLayout.FallBack>
+      </AnimePageLayout>
+    );
   }
 
   return (
     <AnimePageLayout>
-      <AnimePageLayout.LayoutWrapper>
-        <AnimePageLayout.Aside>
-          <Poster imageSrc={item.posterUrl} />
-        </AnimePageLayout.Aside>
+      <AnimePageLayout.Aside>
+        <Poster imageSrc={item.posterUrl} />
+      </AnimePageLayout.Aside>
 
-        <AnimePageLayout.Content>
-          <HeroBannerVM
-            tags={item.tags}
-            title={item.title}
-            description={item.description}
-            rating={item.rating}
-            episodes={item.episodes}
-            status={
-              item.status === "released"
-                ? "Done"
-                : item.status === "anons"
-                  ? "Airing"
-                  : "Airing"
-            }
-            studio={item.studio}
-          />
-          <AnimePageLayout.ButtonContainer>
-            <MyListButton item={item} />
-          </AnimePageLayout.ButtonContainer>
+      <AnimePageLayout.Content>
+        <HeroBannerVM
+          tags={item.tags}
+          title={item.title}
+          description={item.description}
+          rating={item.rating}
+          episodes={item.episodes}
+          status={
+            item.status === "released"
+              ? "Done"
+              : item.status === "anons"
+                ? "Airing"
+                : "Airing"
+          }
+          studio={item.studio}
+        />
+        <AnimePageLayout.ButtonContainer>
+          <MyListButton item={item} />
+        </AnimePageLayout.ButtonContainer>
+        {item.related.length > 0 ? (
           <AnimeCardsBlock
             title={
               lang === "ru"
@@ -82,10 +89,10 @@ export default async function Anime({
             cardWidth={120}
             titleGap={5}
           />
-          <ScreenShots screensUrls={item.screenshots} />
-          <VideoPlayer embedUrl={item.playerUrl} title={item.title} />
-        </AnimePageLayout.Content>
-      </AnimePageLayout.LayoutWrapper>
+        ) : null}
+        <ScreenShots screensUrls={item.screenshots} />
+        <VideoPlayer embedUrl={item.playerUrl} title={item.title} />
+      </AnimePageLayout.Content>
       <ClientLogic item={item} />
     </AnimePageLayout>
   );

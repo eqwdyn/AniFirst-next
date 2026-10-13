@@ -4,6 +4,7 @@ import { IAnimeSearch } from "@entities/AnimeSearch.ent";
 import { IAnime } from "@entities/Anime.ent";
 import { IAnimeKodik } from "@entities/FromServer/AnimeKodik.ent";
 import { IAnimeFull } from "@entities/AnimeFull";
+import { IAnimeGenre } from "../entities/AnimeGenre.ent";
 
 const getTrendingPath = "/trending";
 const getTrendingKodikPath = "/trending-kodik";
@@ -12,6 +13,7 @@ const getNewReleasesPath = "/new-releases";
 const getAnimeByIdPath = "/anime";
 const searchAnimesKodikPath = "/search-kodik";
 const searchAnimesShikimoriPath = "/search-shikimori";
+const getGenresPath = "/genres/shikimori";
 
 export class ApiService {
   constructor(private readonly api: AxiosInstance) {}
@@ -25,32 +27,26 @@ export class ApiService {
   async getNewReleases(
     limit: number,
     page: number,
-  ): Promise<IShikimoriAnime[] | undefined> {
-    const { data: animes } = await this.api.get<IShikimoriAnime[]>(
-      `${getNewReleasesPath}`,
-      {
-        params: {
-          limit,
-          page,
-        },
+  ): Promise<IAnime[] | undefined> {
+    const { data: animes } = await this.api.get<IAnime[]>(getNewReleasesPath, {
+      params: {
+        limit,
+        page,
       },
-    );
+    });
 
     return animes;
   }
   async getTrending(
     limit: number,
     page: number,
-  ): Promise<IShikimoriAnime[] | undefined> {
-    const { data: animes } = await this.api.get<IShikimoriAnime[]>(
-      getTrendingPath,
-      {
-        params: {
-          limit,
-          page,
-        },
+  ): Promise<IAnime[] | undefined> {
+    const { data: animes } = await this.api.get<IAnime[]>(getTrendingPath, {
+      params: {
+        limit,
+        page,
       },
-    );
+    });
 
     return animes;
   }
@@ -104,12 +100,21 @@ export class ApiService {
       `${searchAnimesShikimoriPath}/${title}`,
       {
         params: {
-          status: statusFilter ?? undefined,
-          type: typeFilter ?? undefined,
+          status: statusFilter ?? null,
+          type: typeFilter ?? null,
         },
       },
     );
 
     return animes;
+  }
+
+  async getGenres() {
+    const { data: genres } = await this.api.get<Record<string, string>>(
+      getGenresPath,
+      {},
+    );
+
+    return genres;
   }
 }

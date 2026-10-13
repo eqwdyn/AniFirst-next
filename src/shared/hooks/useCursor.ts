@@ -17,7 +17,7 @@ export function useCursor({ ref, handle }: Props) {
           handle();
         }
       },
-      { root: null, rootMargin: "0px", threshold: 0.1 },
+      { root: null, rootMargin: "0px", threshold: 0.3 },
     );
 
     observer.observe(element);
