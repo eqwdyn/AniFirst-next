@@ -6,7 +6,15 @@ export const PopularGenresRow = async () => {
   if (!initItems) {
     return <></>;
   }
-  //   const items = initItems;
+
+  const keys = Object.keys(initItems).slice(0, 6);
+  const items = keys.reduce(
+    (acc, key) => {
+      acc[key] = initItems[key];
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
   return (
     <GenresBlock
@@ -14,7 +22,7 @@ export const PopularGenresRow = async () => {
       titleId="popular-genres"
       description="Ваши любимые жанры аниме"
       urlToAll="/anime/genres"
-      items={initItems}
+      items={items}
     />
   );
 };

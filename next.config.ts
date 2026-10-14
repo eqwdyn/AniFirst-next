@@ -12,11 +12,11 @@ const nextConfig: NextConfig = {
         hostname: "shikimori.io",
       },
       {
-        hostname: "j61w65gg-7000.euw.devtunnels.ms",
+        hostname: "p05j5zjs-7000.euw.devtunnels.ms",
       },
     ],
   },
-  allowedDevOrigins: ["192.168.0.128"],
+  allowedDevOrigins: ["192.168.0.128", "192.168.100.22"],
 };
 
 export default nextConfig;

@@ -4,9 +4,9 @@ import { useState, useCallback } from "react";
 import { IAnime } from "@entities/Anime.ent";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { Show } from "@shared/ui/Show";
-import { BackFall } from "./BackFall";
 import { Skeleton } from "./Skeleton";
 import { getTrendingAction } from "@app/actions/getTrendingCursor.action";
+import { FallBack } from "./FallBack";
 
 interface Props {
   initialItems: IAnime[] | undefined;
@@ -57,7 +57,7 @@ export function TrendingClient({ initialItems, lang }: Props) {
         />
       </Show>
       <Show when={!items.length}>
-        <BackFall />
+        <FallBack />
       </Show>
       <Show when={loading}>
         <Skeleton />

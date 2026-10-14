@@ -1,4 +1,61 @@
+.link {
+  display: block;
+}
+
 .container {
   position: relative;
+  overflow: hidden;
+
+  /* max-width: 413px; */
   width: 100%;
+  aspect-ratio: 3.4;
+
+  /* border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
+  border-radius: 16px;
+
+  cursor: pointer;
+  transition: 0.2s ease-in all;
+}
+.container:hover {
+  box-shadow:
+    0 0 0 2px var(--color-primary),
+    0 4px 10px 0 var(--color-primary);
+
+  .content {
+    background-color: transparent;
+  }
+}
+.container:active {
+  box-shadow:
+    0 0 0 2px var(--color-primary),
+    0 4px 10px 0 var(--color-primary);
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  z-index: 2;
+
+  background-color: var(--color-primary);
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  background-color: rgba(9, 9, 13, 0.7);
+
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: 0.2s ease-in background-color;
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: 500;
 }

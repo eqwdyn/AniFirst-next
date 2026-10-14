@@ -15,6 +15,7 @@ export const GenresList: FC<Props> = ({ items }) => {
           <GenreCard
             title={val}
             imageUrl={`${process.env.SERVER_URL}/${SERVER_STATIC_PATH}/genres/${key}.jpg`}
+            engTitle={key}
           />
         </li>
       ))}

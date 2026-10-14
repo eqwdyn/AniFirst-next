@@ -1,0 +1,10 @@
+.pageWrapper {
+  padding-top: 120px;
+  margin-bottom: 20px;
+}
+
+.skeleton {
+  /* background-color: var(--color-primaryVeryOpacity); */
+  /* border-radius: 24px; */
+  height: 375px;
+}

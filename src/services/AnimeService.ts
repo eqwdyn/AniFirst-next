@@ -34,22 +34,11 @@ export class AnimesServiceC {
       console.error("Error while get Anime by Id: ", e);
     }
   }
-
   async getTrending(page: number = 1): Promise<IAnime[] | undefined> {
     try {
       const animes = await this.apiService.getTrending(1, page);
 
       return animes;
-    } catch (e: any) {
-      console.error("Error while get Anime Trends: ", e.message);
-    }
-  }
-
-  async getTrendingKodik(): Promise<IAnime[] | undefined> {
-    try {
-      const responsedAnimes = await this.apiService.getTrendingKodik(20);
-
-      return responsedAnimes;
     } catch (e: any) {
       console.error("Error while get Anime Trends: ", e.message);
     }
@@ -70,20 +59,6 @@ export class AnimesServiceC {
 
   async searchAnimes(
     title: string,
-    ststatusFilter?: string,
-    typeFilter?: string,
-  ): Promise<IAnimeSearch[] | undefined> {
-    try {
-      const responsedAnimes = await this.apiService.searchAnimes(title);
-
-      return responsedAnimes;
-    } catch (e: any) {
-      console.error("Error while searching Animes: ", e.message);
-    }
-  }
-
-  async searchAnimesShikimori(
-    title: string,
     statusFilter?: "ongoing" | "anons" | "released" | "latest",
     typeFilter?:
       | "tv"
@@ -100,7 +75,7 @@ export class AnimesServiceC {
       | "cm",
   ): Promise<IAnimeSearch[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.searchAnimesShikimori(
+      const responsedAnimes = await this.apiService.searchAnimes(
         title,
         statusFilter,
         typeFilter,
@@ -119,6 +94,18 @@ export class AnimesServiceC {
       return genres;
     } catch (e) {
       console.error("Error while getting Genres: ", e);
+    }
+  }
+  async getAnimesByGenre(
+    genre: string,
+    page = 1,
+  ): Promise<IAnime[] | undefined> {
+    try {
+      const genres = await this.apiService.getAnimesByGenre(genre, page);
+
+      return genres;
+    } catch (e) {
+      console.error("Error while getting Animes by Genres: ", e);
     }
   }
 }
