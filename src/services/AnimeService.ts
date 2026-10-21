@@ -20,8 +20,8 @@ export class AnimesServiceC {
       }
 
       return anime;
-    } catch (e) {
-      console.error("Error while get Anime by Id: ", e);
+    } catch (e: any) {
+      console.error("Error while get Anime by Id: ", e.message);
     }
   }
 
@@ -30,8 +30,8 @@ export class AnimesServiceC {
       const animes = await this.apiService.getNewReleases(1, page);
 
       return animes;
-    } catch (e) {
-      console.error("Error while get Anime by Id: ", e);
+    } catch (e: any) {
+      console.error("Error while get Anime new releases: ", e.message);
     }
   }
   async getTrending(page: number = 1): Promise<IAnime[] | undefined> {
@@ -92,8 +92,8 @@ export class AnimesServiceC {
       const genres = await this.apiService.getGenres();
 
       return genres;
-    } catch (e) {
-      console.error("Error while getting Genres: ", e);
+    } catch (e: any) {
+      console.error("Error while getting Genres: ", e.message);
     }
   }
   async getAnimesByGenre(
@@ -104,8 +104,8 @@ export class AnimesServiceC {
       const genres = await this.apiService.getAnimesByGenre(genre, page);
 
       return genres;
-    } catch (e) {
-      console.error("Error while getting Animes by Genres: ", e);
+    } catch (e: any) {
+      console.error("Error while getting Animes by Genres: ", e.message);
     }
   }
 }

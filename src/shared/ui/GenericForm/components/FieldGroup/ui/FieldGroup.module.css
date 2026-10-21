@@ -1,0 +1,45 @@
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background-color: #1e1e1e;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+.input[aria-errormessage] {
+  border-color: var(--color-red);
+}
+
+.input::placeholder {
+  color: #666666;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #555555;
+}
+
+.errorLabel {
+  font-size: 0.9rem;
+  color: var(--color-red);
+}

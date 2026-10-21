@@ -1,12 +1,8 @@
-import { SearchAnimesBar } from "@/features/SearchAnimesBar";
-import { AccPreview } from "../components/AccPreview";
 import cl from "./Header.module.css";
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 import { Navigation } from "@/widgets/Header/components/Navigation";
 import { BurgerButton } from "@/widgets/Header/components/BurgerButton";
-import { SearchLink } from "@/widgets/Header/components/SearchLink";
-import { MockSearchBar } from "../../../shared/ui/MockSearchBar";
-// import { SearchBar } from ""../../../"shared/ui/SearchBar";
+import { IconLink } from "@shared/ui/IconLink";
 
 export const Header = ({}) => {
   return (
@@ -25,16 +21,17 @@ export const Header = ({}) => {
           </nav>
         </div>
 
-        <NotStyledLink href="/anime/search" className={cl.searchWrapper}>
+        {/* <NotStyledLink href="/anime/search" className={cl.searchWrapper}>
           <MockSearchBar placeholder="Search anime, movies, creators..." />
-        </NotStyledLink>
+        </NotStyledLink> */}
 
         <div className={cl.userActions}>
-          <AccPreview />
+          <IconLink href="/anime/search" iconUrl="/svg/search.svg" />
+          <IconLink href="/me" iconUrl="/svg/user.svg" />
         </div>
 
         <div className={cl.mobileActions}>
-          <SearchLink />
+          <IconLink href="/anime/search" iconUrl="/svg/search.svg" />
           <BurgerButton />
         </div>
       </div>

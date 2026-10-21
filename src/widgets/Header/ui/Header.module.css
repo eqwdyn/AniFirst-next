@@ -58,6 +58,11 @@
   align-items: center;
 }
 
+.userActions {
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
 .searchWrapper {
   max-width: 400px;
   width: 100%;
