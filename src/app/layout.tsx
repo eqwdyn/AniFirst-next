@@ -6,6 +6,7 @@ import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
 import { parseColors } from "@/shared/utils/parseColorsToCssVars";
 import Script from "next/script";
+import { AuthProvider } from "../shared/providers/AuthProvider";
 
 const monserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat-alternates",
@@ -40,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body style={{ position: "relative" }}>
         <Header />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
         <Footer />
       </body>
     </html>

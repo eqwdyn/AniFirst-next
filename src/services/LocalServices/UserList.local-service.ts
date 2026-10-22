@@ -2,7 +2,7 @@ import { CONTINUE_TO_WATCH_KEY, MY_LIST_KEY } from "@shared/config";
 import { IAnime } from "@entities/Anime.ent";
 import { LocalStorageService } from "./LocalStorageService";
 
-class ClientAnimesServiceC {
+export class UserListLocalServiceC {
   constructor(private readonly localStorageService: LocalStorageService) {}
 
   getContinueToWatch(): IAnime[] | null {
@@ -43,6 +43,6 @@ class ClientAnimesServiceC {
   }
 }
 
-export const ClientAnimesService = new ClientAnimesServiceC(
+export const UserListLocalService = new UserListLocalServiceC(
   new LocalStorageService(),
 );

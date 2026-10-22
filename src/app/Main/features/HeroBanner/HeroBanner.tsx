@@ -1,4 +1,4 @@
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { HeroBannerVM } from "./HeroBanner.vm";
 
 export const HeroBanner = async () => {

@@ -1,7 +1,7 @@
 "use server";
 
 import { IUser } from "@entities/IUser.ent";
-import { AuthService } from "@services/AuthService";
+import { AuthService } from "@/services/AuthService";
 
 type ActionsReturnType = IUser | string;
 

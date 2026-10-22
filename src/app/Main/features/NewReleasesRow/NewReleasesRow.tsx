@@ -1,4 +1,4 @@
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { getLang } from "@shared/utils/getLang";
 

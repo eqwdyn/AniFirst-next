@@ -1,18 +1,11 @@
-import {
-  AxiosInstance,
-  create,
-  AxiosError,
-  InternalAxiosRequestConfig,
-} from "axios";
+import { AxiosInstance, AxiosError } from "axios";
 import { IUser } from "@entities/IUser.ent";
 import { ACCESS_TOKEN_SESSION_STORAGE_KEY } from "@shared/config";
+import { authedApi } from "../shared/api/AuthedApi";
 
-const authPath = "auth";
-
-const loginPath = "/login";
-const registerPath = "/register";
-const refreshPath = "/refresh";
-const mePath = "/me";
+const loginPath = "account/login" as const;
+const registerPath = "account/register" as const;
+const mePath = "account/me" as const;
 
 interface AuthDto {
   login: string;
@@ -66,73 +59,4 @@ export class AuthServiceC {
   }
 }
 
-const authApi = create({
-  baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL ?? ""}/${authPath}`,
-  withCredentials: true,
-});
-
-authApi.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = sessionStorage.getItem(ACCESS_TOKEN_SESSION_STORAGE_KEY);
-
-    if (token) {
-      if (!config.headers.Authorization) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-    }
-
-    return config;
-  },
-  (error) => Promise.reject(error),
-);
-
-authApi.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry &&
-      sessionStorage.getItem(ACCESS_TOKEN_SESSION_STORAGE_KEY)
-    ) {
-      originalRequest._retry = true;
-
-      try {
-        let retryCount = 0;
-        const maxRetries = 1;
-        console.log("Interceptor");
-
-        while (retryCount <= maxRetries) {
-          try {
-            const newTokens = await authApi.post(refreshPath);
-            const { accessToken } = newTokens.data;
-
-            sessionStorage.setItem(
-              ACCESS_TOKEN_SESSION_STORAGE_KEY,
-              accessToken,
-            );
-
-            if (originalRequest.headers) {
-              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-            }
-
-            return authApi(originalRequest);
-          } catch (refreshError) {
-            retryCount++;
-            if (retryCount > maxRetries) {
-              sessionStorage.clear();
-              throw new Error("SESSION_EXPIRED");
-            }
-          }
-        }
-      } catch (refreshError) {
-        sessionStorage.clear();
-        throw new Error("SESSION_EXPIRED");
-      }
-    }
-    return Promise.reject(error);
-  },
-);
-
-export const AuthService = new AuthServiceC(authApi);
+export const AuthService = new AuthServiceC(authedApi);

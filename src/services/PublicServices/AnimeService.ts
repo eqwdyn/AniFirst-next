@@ -1,20 +1,27 @@
 import { IAnime } from "@/entities/Anime.ent";
-import { ApiService } from "@/services/ApiService";
 import { IAnimeFull } from "@entities/AnimeFull";
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
-import axios from "axios";
-import { IAnimeGenre } from "../entities/AnimeGenre.ent";
+import axios, { AxiosInstance } from "axios";
 
 const api = axios.create({
   baseURL: process.env.SERVER_URL,
 });
 
+const getTrendingPath = "/trending";
+const getHeroAnimePath = "/hero-anime";
+const getNewReleasesPath = "/new-releases";
+const getAnimeByIdPath = "/anime";
+const searchAnimesShikimoriPath = "/search-shikimori";
+const getGenresPath = "/genres";
+
 export class AnimesServiceC {
-  constructor(private readonly apiService: ApiService) {}
+  constructor(private readonly api: AxiosInstance) {}
 
   async getById(id: string): Promise<IAnimeFull | undefined> {
     try {
-      const anime = await this.apiService.getAnimeById(id);
+      const { data: anime } = await this.api.get<IAnimeFull>(
+        `${getAnimeByIdPath}/${id}`,
+      );
       if (!anime) {
         return undefined;
       }
@@ -27,7 +34,16 @@ export class AnimesServiceC {
 
   async getNewReleases(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const animes = await this.apiService.getNewReleases(1, page);
+      //   const animes = await this.apiService.getNewReleases(1, page);
+      const { data: animes } = await this.api.get<IAnime[]>(
+        getNewReleasesPath,
+        {
+          params: {
+            limit: 1,
+            page,
+          },
+        },
+      );
 
       return animes;
     } catch (e: any) {
@@ -36,7 +52,12 @@ export class AnimesServiceC {
   }
   async getTrending(page: number = 1): Promise<IAnime[] | undefined> {
     try {
-      const animes = await this.apiService.getTrending(1, page);
+      const { data: animes } = await this.api.get<IAnime[]>(getTrendingPath, {
+        params: {
+          limit: 1,
+          page,
+        },
+      });
 
       return animes;
     } catch (e: any) {
@@ -46,12 +67,9 @@ export class AnimesServiceC {
 
   async getHeroAnime(): Promise<IAnime | undefined> {
     try {
-      const responsedAnime = await this.apiService.getHeroAnime();
-      if (!responsedAnime) {
-        return undefined;
-      }
+      const { data: anime } = await this.api.get<IAnime>(getHeroAnimePath);
 
-      return responsedAnime;
+      return anime;
     } catch (e: any) {
       console.error("Error while get hero Anime: ", e.message);
     }
@@ -75,13 +93,17 @@ export class AnimesServiceC {
       | "cm",
   ): Promise<IAnimeSearch[] | undefined> {
     try {
-      const responsedAnimes = await this.apiService.searchAnimes(
-        title,
-        statusFilter,
-        typeFilter,
+      const { data: animes } = await this.api.get<IAnimeSearch[]>(
+        `${searchAnimesShikimoriPath}/${title}`,
+        {
+          params: {
+            status: statusFilter ?? null,
+            type: typeFilter ?? null,
+          },
+        },
       );
 
-      return responsedAnimes;
+      return animes;
     } catch (e: any) {
       console.error("Error while searching Animes: ", e.message);
     }
@@ -89,7 +111,8 @@ export class AnimesServiceC {
 
   async getGenres(): Promise<Record<string, string> | undefined> {
     try {
-      const genres = await this.apiService.getGenres();
+      const { data: genres } =
+        await this.api.get<Record<string, string>>(getGenresPath);
 
       return genres;
     } catch (e: any) {
@@ -101,7 +124,10 @@ export class AnimesServiceC {
     page = 1,
   ): Promise<IAnime[] | undefined> {
     try {
-      const genres = await this.apiService.getAnimesByGenre(genre, page);
+      const { data: genres } = await this.api.get<IAnimeSearch[]>(
+        `${getGenresPath}/${genre}`,
+        { params: { page } },
+      );
 
       return genres;
     } catch (e: any) {
@@ -110,4 +136,4 @@ export class AnimesServiceC {
   }
 }
 
-export const AnimesService = new AnimesServiceC(new ApiService(api));
+export const AnimesService = new AnimesServiceC(api);

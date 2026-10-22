@@ -1,6 +1,6 @@
 "use server";
 
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { IAnime } from "@entities/Anime.ent";
 
 type ActionsReturnType = IAnime[] | null;

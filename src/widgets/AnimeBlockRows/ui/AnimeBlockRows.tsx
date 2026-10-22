@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { useCursor } from "../../../shared/hooks/useCursor";
+import { useCursor } from "@shared/hooks/useCursor";
 import cl from "./AnimeBlockRows.module.css";
+// TODO: Fix styles
 import { NotStyledLink } from "@/shared/ui/NotStyledLink";
 
 interface Props<T> {

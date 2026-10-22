@@ -1,4 +1,4 @@
-import { AnimesService } from "../../../services/AnimeService";
+import { AnimesService } from "../../../services/PublicServices/AnimeService";
 import { SearchPageLayout } from "./components/Layout/";
 import { SearchClient } from "./components/SearchClient";
 

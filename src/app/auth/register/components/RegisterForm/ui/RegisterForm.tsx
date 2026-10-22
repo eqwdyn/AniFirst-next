@@ -5,6 +5,8 @@ import { PasswordToggleIcon } from "../components/PasswordToggleIcon";
 import { GenericForm } from "@shared/ui/GenericForm";
 import cl from "./RegisterForm.module.css";
 import { NotStyledLink } from "@shared/ui/NotStyledLink";
+import { AuthService } from "@/services/AuthService";
+import { useRouter } from "next/router";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -16,6 +18,8 @@ export const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [checkBoxError, setCheckBoxError] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const togglePassword = () => setShowPassword((prev) => !prev);
   const toggleConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
@@ -52,6 +56,8 @@ export const RegisterForm = () => {
       );
       return false;
     }
+
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,11 +66,18 @@ export const RegisterForm = () => {
     setPasswordError("");
     setCheckBoxError("");
 
-    if (!validateHandle()) return;
+    const provedValidate = validateHandle();
+    if (!provedValidate) return;
 
-    setNameError("ASDASDASD");
-    // setError("");
-    // TODO: логика регистрации
+    setIsLoading(true);
+    try {
+      await AuthService.register({ login: username, password });
+      router.push("/me");
+    } catch (e: any) {
+      console.log(e.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -157,6 +170,7 @@ export const RegisterForm = () => {
         </p>
       }
       submitButtonText="Создать аккаунт"
+      submitButtonDisabled={isLoading}
     />
   );
 };

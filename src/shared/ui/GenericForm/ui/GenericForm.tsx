@@ -14,6 +14,7 @@ interface Props {
   footerSlot?: ReactNode;
   formFooterSlot?: ReactNode;
   submitButtonText: string;
+  submitButtonDisabled?: boolean;
 }
 
 export const GenericForm: FC<Props> = ({
@@ -24,6 +25,7 @@ export const GenericForm: FC<Props> = ({
   footerSlot,
   formFooterSlot,
   submitButtonText,
+  submitButtonDisabled,
 }) => {
   return (
     <div className={cl.container}>
@@ -48,7 +50,11 @@ export const GenericForm: FC<Props> = ({
 
         {formFooterSlot}
 
-        <button type="submit" className={cl.submitButton}>
+        <button
+          type="submit"
+          className={cl.submitButton}
+          disabled={submitButtonDisabled}
+        >
           {submitButtonText}
         </button>
       </form>

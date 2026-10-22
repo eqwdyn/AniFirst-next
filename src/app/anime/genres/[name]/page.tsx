@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { AnimesService } from "../../../../services/AnimeService";
+import { AnimesService } from "../../../../services/PublicServices/AnimeService";
 import { PageLayout } from "../components/Layout";
 import { FallBack } from "../components/FallBack";
 import { AnimeBlock } from "../../../../widgets/AnimeBlock";
