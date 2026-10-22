@@ -1,22 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Skeleton } from "./components/Skeleton";
-import { ClientAnimesService } from "@services/ClientAnimesService";
+import { UserListLocalService } from "@/services/LocalServices/UserList.local-service";
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
 import { IAnime } from "@entities/Anime.ent";
 import { getLang } from "@shared/utils/getLang";
+import { UserInteractionsAuthedService } from "@services/AuthedServices/UserInteractions.authed-service";
+import { useAuth } from "@shared/providers/AuthProvider";
 
 export const ContinueWatchingRow = () => {
+  const { isAuthorized, isLoading } = useAuth();
   const [animes, setAnimes] = useState<IAnime[] | null>(null);
   const lang = getLang();
 
   useEffect(() => {
-    setAnimes(ClientAnimesService.getContinueToWatch()?.reverse() ?? []);
-  }, []);
+    if (isLoading) return;
+
+    const fetchAnimes = async () => {
+      if (isAuthorized) {
+        try {
+          const animes = await UserInteractionsAuthedService.getLastViewed();
+          setAnimes(animes);
+        } catch {
+          setAnimes(UserListLocalService.getContinueToWatch()?.reverse() ?? []);
+        }
+      } else {
+        setAnimes(UserListLocalService.getContinueToWatch()?.reverse() ?? []);
+      }
+    };
+
+    fetchAnimes();
+  }, [isAuthorized, isLoading]);
 
   if (!animes) {
-    return <Skeleton />;
+    return <></>;
   }
 
   if (animes.length === 0) {

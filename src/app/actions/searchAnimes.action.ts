@@ -1,7 +1,7 @@
 "use server";
 
 import { IAnimeSearch } from "@entities/AnimeSearch.ent";
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 
 type ActionsReturnType = IAnimeSearch[] | null;
 

@@ -1,5 +1,5 @@
 import { Poster } from "@/app/anime/anime-page/[id]/components/Poster";
-import { AnimesService } from "@/services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { HeroBannerVM } from "@/app/anime/anime-page/[id]/components/HeroBanner";
 import { AnimePageLayout } from "@/app/anime/anime-page/[id]/components/Layout";
 import { ScreenShots } from "./components/ScreenShots";

@@ -29,6 +29,10 @@ export const AnimeCardsBlock: FC<Props> = ({
   cursorHandle,
   titleGap,
 }) => {
+  if (!items.length) {
+    return <></>;
+  }
+
   return direction === "rows" ? (
     <AnimeBlockRows<IAnime>
       title={title}

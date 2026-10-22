@@ -9,6 +9,12 @@
   display: flex;
   column-gap: 12px;
   align-items: center;
+
+  transition: 0.2s ease-in all;
+}
+.wrapper:hover {
+  background-color: var(--color-primaryShadow);
+  border-color: var(--color-primary);
 }
 .searchButton {
   background: none;

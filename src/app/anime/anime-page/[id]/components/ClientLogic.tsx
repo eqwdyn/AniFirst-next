@@ -2,7 +2,7 @@
 
 import { useEffect, type FC } from "react";
 import { IAnime } from "@entities/Anime.ent";
-import { ClientAnimesService } from "../../../../../services/ClientAnimesService";
+import { UserListLocalService } from "@services/LocalServices/UserList.local-service";
 
 interface Props {
   item: IAnime;
@@ -10,7 +10,7 @@ interface Props {
 
 export const ClientLogic: FC<Props> = ({ item }) => {
   useEffect(() => {
-    ClientAnimesService.setContinueToWatch(item);
+    UserListLocalService.setContinueToWatch(item);
   }, [item]);
 
   return <></>;

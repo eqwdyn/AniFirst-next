@@ -4,6 +4,7 @@ export default {
   backgroundSecondary: "#12121E",
 
   primary: "#8B5CF6",
+  primaryShadow: "#241B3E",
   primaryTint: "#A78BFA",
   primaryOpacity: "rgba(138, 92, 246, 0.2)",
   primaryVeryOpacity: "rgba(138, 92, 246, 0.05)",
@@ -15,4 +16,6 @@ export default {
   border: "#27273A",
   textPrimary: "#F8FAFC",
   textSecondary: "#94A3B8",
+
+  red: "#e64646",
 };

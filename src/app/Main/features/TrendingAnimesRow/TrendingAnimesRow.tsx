@@ -1,5 +1,5 @@
 import { AnimeCardsBlock } from "@widgets/AnimeCardsBlock";
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { getLang } from "@shared/utils/getLang";
 
 export const TrendingAnimesRow = async () => {

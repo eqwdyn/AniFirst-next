@@ -1,4 +1,4 @@
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { GenresBlock } from "@widgets/GenresBlock";
 
 export const PopularGenresRow = async () => {

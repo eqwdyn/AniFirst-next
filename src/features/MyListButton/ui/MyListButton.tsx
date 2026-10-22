@@ -7,7 +7,9 @@ import cl from "./MyListButton.module.css";
 import Image from "next/image";
 import { Show } from "@shared/ui/Show";
 import { FC, useEffect, useState } from "react";
-import { ClientAnimesService } from "@services/ClientAnimesService";
+import { UserListLocalService } from "@/services/LocalServices/UserList.local-service";
+import { UserInteractionsAuthedService } from "@services/AuthedServices/UserInteractions.authed-service";
+import { useAuth } from "@shared/providers/AuthProvider";
 
 interface Props {
   item: IAnime;
@@ -15,30 +17,86 @@ interface Props {
 }
 
 export const MyListButton: FC<Props> = ({ item, adaptiveText }) => {
-  const [isItemInList, setIsItemInList] = useState<boolean | null>(null);
+  const { isAuthorized, isLoading: isAuthLoading } = useAuth();
   const lang = getLang();
 
-  const buttonHandler = isItemInList
-    ? () => {
-        ClientAnimesService.delItemFromMyList(item.shikimori_id);
-        setIsItemInList(false);
-      }
-    : () => {
-        ClientAnimesService.setMyList(item);
-        setIsItemInList(true);
-      };
+  const [isItemInList, setIsItemInList] = useState<boolean | null>(null);
+  const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    const flag = !!ClientAnimesService.getMyListItemByShikimoriId(
-      item.shikimori_id,
-    );
+    if (isAuthLoading) return;
 
-    setIsItemInList(flag);
-  }, [item]);
+    let cancelled = false;
+
+    const check = async () => {
+      if (isAuthorized) {
+        try {
+          const favorites = await UserInteractionsAuthedService.getFavorite();
+          if (cancelled) return;
+          setIsItemInList(
+            favorites.some((a) => a.shikimori_id === item.shikimori_id),
+          );
+        } catch {
+          if (cancelled) return;
+          setIsItemInList(
+            !!UserListLocalService.getMyListItemByShikimoriId(
+              item.shikimori_id,
+            ),
+          );
+        }
+      } else {
+        setIsItemInList(
+          !!UserListLocalService.getMyListItemByShikimoriId(item.shikimori_id),
+        );
+      }
+    };
+
+    check();
+    return () => {
+      cancelled = true;
+    };
+  }, [item.shikimori_id, isAuthorized, isAuthLoading]);
+
+  const buttonHandler = async () => {
+    if (isItemInList === null || isPending) return;
+
+    setIsPending(true);
+    const wasInList = isItemInList;
+
+    // оптимистичное обновление
+    setIsItemInList(!wasInList);
+
+    try {
+      if (isAuthorized) {
+        if (wasInList) {
+          await UserInteractionsAuthedService.deleteFromFavorite(
+            item.shikimori_id,
+          );
+        } else {
+          await UserInteractionsAuthedService.addToFavorite(item.shikimori_id);
+        }
+      } else {
+        if (wasInList) {
+          UserListLocalService.delItemFromMyList(item.shikimori_id);
+        } else {
+          UserListLocalService.setMyList(item);
+        }
+      }
+    } catch {
+      // откат оптимистичного обновления при ошибке
+      setIsItemInList(wasInList);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  // TODO: Ускорить работу
+
   return (
     <SecondaryButton
       onClick={buttonHandler}
       className={isItemInList ? cl.redButton : undefined}
+      disabled={isItemInList === null || isPending}
     >
       <Show when={isItemInList === null}>
         <div className={cl.skeleton} />

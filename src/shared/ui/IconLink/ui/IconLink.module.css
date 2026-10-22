@@ -1,0 +1,23 @@
+.link:hover {
+  .iconWrapper {
+    background-color: var(--color-primaryShadow);
+    border-color: var(--color-primary);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  padding: 8px;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-border);
+
+  transition: 0.2s ease-in all;
+}
+.icon {
+  width: 20px;
+  aspect-ratio: 1;
+}

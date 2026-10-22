@@ -1,5 +1,5 @@
 import { PageLayout } from "./components/Layout/ui/Layout";
-import { AnimesService } from "@services/AnimeService";
+import { AnimesService } from "@/services/PublicServices/AnimeService";
 import { getLang } from "@shared/utils/getLang";
 import { TrendingClient } from "./components/TrendingClient";
 
