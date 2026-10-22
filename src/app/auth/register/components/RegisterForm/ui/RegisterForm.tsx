@@ -6,7 +6,7 @@ import { GenericForm } from "@shared/ui/GenericForm";
 import cl from "./RegisterForm.module.css";
 import { NotStyledLink } from "@shared/ui/NotStyledLink";
 import { AuthService } from "@/services/AuthService";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");

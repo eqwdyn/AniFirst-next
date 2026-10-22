@@ -5,8 +5,8 @@ import "./styles/global.css";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
 import { parseColors } from "@/shared/utils/parseColorsToCssVars";
-import Script from "next/script";
 import { AuthProvider } from "../shared/providers/AuthProvider";
+import { PropsWithChildren } from "react";
 
 const monserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat-alternates",
@@ -29,7 +29,11 @@ export const metadata: Metadata = {
     "Смотрите Аниме без рекламы в высоком качестве. Watch Anime without ads in high quality",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const cssVars = parseColors();
   return (
     <html
